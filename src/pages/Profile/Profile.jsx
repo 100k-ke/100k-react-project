@@ -2,7 +2,18 @@ import React,{Component} from 'react'
 import './css/profile.less'
 
 export default class Profile extends Component{
+  state = {
+    roomCount:''    //关注房子的数量
+  }
+  componentDidMount(){
+    let ul = this.refs.roomlist
+    let lis = ul.children
+    this.setState({
+      roomCount:lis.length
+    })
+  }
   render(){
+    const {roomCount} = this.state
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -85,7 +96,7 @@ export default class Profile extends Component{
             {/* 标题 */}
             <div className="title">
               共 &nbsp;
-              <span className="room-count">0</span>&nbsp;
+              <span className="room-count">{roomCount}</span>&nbsp;
               套 关注房源
             </div>
             {/* 关注的房子类型 */}
@@ -95,13 +106,13 @@ export default class Profile extends Component{
               <span className="room-span">租房</span>
             </div>
             {/* 未关注房子的状态 */}
-            <div className="room-detail"  style={{display:'none'}}>
+            <div className="room-detail" style={{display:'none'}}>
               <div className="room-logo"></div>
               <p className="room-text">还没有关注任何房源哦</p>
             </div>
             {/* 关注房子的状态信息 */}
-            <ul className="roomList">
-              <li ref="roomlist">
+            <ul className="roomList" ref="roomlist">
+              <li>
                 <div className="roomDetail">
                   {/* 房子图片 */}
                   <div className="roomImg"></div>
