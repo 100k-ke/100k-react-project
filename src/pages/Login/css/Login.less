@@ -14,6 +14,9 @@ html,body{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .6);
+  &.active{
+    visibility: hidden;
+  }
   .login{
     width: 300px;
     height: 381px;
@@ -28,10 +31,15 @@ html,body{
     transform: translateX(-50%) translateY(-50%);
     .close{
       position: absolute;
+      width: 20px;
+      height: 20px;
       top: 15px;
       right: 15px;
       color: #101d37;
       font-size: 18px;
+      &:hover{
+        cursor: pointer;
+      }
     }
     header{
       width: 300px;
@@ -56,7 +64,7 @@ html,body{
       position: absolute;
       bottom: 40px;
       form{
-        .phone, .smsCode{
+        .phone, .smsCode , .picCode{
           width: 300px;
           height: 50px;
           padding-left: 16px;
@@ -65,13 +73,27 @@ html,body{
         }
         .phone{
           border-radius: 2px 2px 0px 0px;
-          border-bottom: none;
           input{
             width: 260px;
           }
         }
+        .picCode{
+          border-radius: 2px 2px 0px 0px;
+          border-top: none;
+          input{
+            width: 150px;
+          }
+          .pic{
+            float: right;
+            width: 125px;
+            height: 45px;
+            position: relative;
+            z-index: 90;
+          }
+        }
         .smsCode{
           border-radius: 0px 0px 2px 2px;
+          border-top: none;
           input{
             width: 167px;
           }

@@ -10,7 +10,6 @@ export default class App extends Component{
         <Switch>
           <Route path="/profile" component={Profile}/>
           <Route path="/login" component={Login}/>
-          <Redirect to="/login"/>
         </Switch>
       </div>
     )
