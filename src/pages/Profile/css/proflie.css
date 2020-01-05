@@ -11,12 +11,10 @@
   width: 1000px;
   height: 100%;
   margin: 0 auto;
-  background: pink;
 }
 .profile-header .header-logo{
   width: 88px;
   height: 30px;
-  background: greenyellow;
 }
 .profile-header .header-logo img{
   width: 88px;
