@@ -1,0 +1,24 @@
+.profileContainer{
+  width: 100%;
+  height: 1000px;
+}
+.profileContainer .headerContainer{
+  width: 100%;
+  height: 55px;
+  background: #3072f6;
+}
+.profileContainer .headerContainer .profile-header{
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+  background: pink;
+}
+.profile-header .header-logo{
+  width: 88px;
+  height: 30px;
+  background: greenyellow;
+}
+.profile-header .header-logo img{
+  width: 88px;
+  height: 30px;
+}
