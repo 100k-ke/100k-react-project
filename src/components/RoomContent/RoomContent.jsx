@@ -7,7 +7,7 @@ export default class RoomContent extends Component{
     return (
       <div className={roomCount === 0 ? 'room-detail' : 'room-detail display'}>
         <div className="room-logo"></div>
-        <p className="room-text">还没有关注任何房源哦</p>
+        <p className="room-text">还没有任何关注哦</p>
       </div>
     )
   }

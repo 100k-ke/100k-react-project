@@ -7,18 +7,31 @@ import RoomContent from '../../components/RoomContent/RoomContent'
 export default class Profile extends Component{
   state = {
     roomCount:0,    //关注房子的数量
-    active:[true,false,false],     //用高亮样式,默认不用
-    leftActiveArrs:[   //左侧菜单
-      {name:'关注的房源',active:true},
-      {name:'关注的小区',active:false},
-      {name:'我的搜索',active:false},
-      {name:'编辑资料',active:false},
-    ],
-    pathname:''
+    active1:[true,false,false],     //用高亮样式,默认不用
+    active2:[true,false,false,false],
+    pathname:'',   //获取当前的路径
+    cancel:false    //取消关注
   }
+  // 改变房子类型的样式
   changeActive1 = (index)=>{
-    let {active}  = this.state
-    let newActive = active.map((item,i)=>{
+    const {active1} = this.state
+    let newActive1 = active1.map((item,i)=>{
+      if (index === i) {
+        item = true
+      }else{
+        item = false
+      }
+      return item
+    })
+    
+    this.setState({
+      active1:newActive1
+    })
+  }
+  // 改变房子左侧类型的样式
+  changeActive2 = (index) =>{
+    const {active2} = this.state
+    let newActive2 = active2.map((item,i)=>{
       if (index === i) {
         item = true
       }else{
@@ -27,23 +40,16 @@ export default class Profile extends Component{
       return item
     })
     this.setState({
-      active:newActive
-    })
-  }
-  changeActive2 = (index) =>{
-    let {leftActiveArrs}  = this.state
-    let newActive = leftActiveArrs.map((item,i)=>{
-      if (index === i) {
-        item.active = true
-      }else{
-        item.active = false
-      }
-      return item
-    })
-    this.setState({
-      leftActiveArrs:newActive,
+      active2:newActive2
     })
     
+  }
+  //取消关注
+  cancel = ()=>{
+    this.setState({
+      cancel:true,
+      roomCount:0
+    })
   }
   // 挂载
   componentDidMount(){
@@ -56,14 +62,11 @@ export default class Profile extends Component{
       roomCount:lis.length
     })    
   }
-  UNSAFE_componentWillReceiveProps(){
-    let {pathname} = this.props.location
-    this.setState({pathname})
-  }
   render(){
     // 模拟数据
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
-    const {roomCount,active,leftActiveArrs,pathname}  = this.state
+    const {roomCount,active1,active2,cancel}  = this.state
+    let {pathname} = this.props.location
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -118,113 +121,79 @@ export default class Profile extends Component{
               <span>欢迎你,17****85</span>
             </div>
             <ul className="user-detail">
-              {
-                leftActiveArrs.map((left,index)=>{
-                  return (
-                    <Link to={`/profile/${index}`} key={index}>
-                      <li onClick={()=>this.changeActive2(index)} className={leftActiveArrs[index].active ? 'active' : ''}>{left.name}</li>
-                    </Link>
-                  )
-                })
-              }
+              <Link to="/profile/0">
+                <li className={active2[0] ? 'active' : ''}  onClick={()=>this.changeActive2(0)}>关注的房源</li>
+              </Link>
+              <Link to="/profile/1">
+                <li className={active2[1] ? 'active' : ''}  onClick={()=>this.changeActive2(1)}>关注的小区</li>
+              </Link>
+              <Link to="/profile/2">
+                <li className={active2[2] ? 'active' : ''}  onClick={()=>this.changeActive2(2)}>我的搜索</li>
+              </Link>
+              <Link to="/profile/3">
+                <li className={active2[3] ? 'active' : ''}  onClick={()=>this.changeActive2(3)}>我的资料</li>
+              </Link>
             </ul>
           </div>
           {/* 右侧 */}
           <div className="main-right">
 
             {/* 标题 */}
-            <RoomHeader roomCount={roomCount} pathname={pathname}/>
-
-            {/* 关注的房子类型 */}
-            <div className="room-list">
-              <span className={active[0] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(0)}>二手房</span>
-              <span className={active[1] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(1)}>新房</span>
-              <span className={active[2] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(2)}>租房</span>
+            <RoomHeader key={pathname} roomCount={roomCount} pathname={pathname}/>
+            {/* 房子类型 */}
+            <div className={pathname === '/profile/0' ? 'room-list' : 'room-list display'}>
+              <span className={active1[0] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(0)}>二手房</span>
+              <span className={active1[1] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(1)}>新房</span>
+              <span className={active1[2] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(2)}>租房</span>
             </div>
-
             {/* 未关注房子的状态 */}
             <RoomContent roomCount={roomCount}/>
-
             {/* 关注房子的状态信息 */}
             <ul className={roomCount === 0 ? 'roomList display' : 'roomList'} ref="roomlist">
-              <li>
-                <div className="roomDetail">
-                  {/* 房子图片 */}
-                  <div className="roomImg"></div>
-                  {/* 房子的详情 */}
-                  <div className="roomInfo">
-                    <div className="roomTitle">
-                      <p>【首套首付215万】【套内面积86.49】</p>
-                    </div>
-                    <div className="roomXqing">
-                      <div className="roomMap">
-                        <span>益辰欣园</span>
-                        <span>2室1厅</span>
-                        <span className="line">|</span>
-                        <span>99.02平米</span>
-                        <span className="line">|</span>
-                        <span>东 西</span>
+              {
+                cancel === true ? '' :
+                (<li>
+                  <div className="roomDetail">
+                    <div className="roomImg"></div>
+                    <div className="roomInfo">
+                      <div className="roomTitle">
+                        <p>【首套首付215万】【套内面积86.49】</p>
                       </div>
-                      <div className="roomType">
-                        <span>二手房</span>
-                        <span className="xie">/</span>
-                        <span>低楼层(共11层)</span>
-                        <span className="xie">/</span>
-                        <span>2002年建板塔结合</span>
+                      <div className="roomXqing">
+                        <div className="roomMap">
+                          <span>益辰欣园</span>
+                          <span>2室1厅</span>
+                          <span className="line">|</span>
+                          <span>99.02平米</span>
+                          <span className="line">|</span>
+                          <span>东 西</span>
+                        </div>
+                        <div className="roomType">
+                          <span>二手房</span>
+                          <span className="xie">/</span>
+                          <span>低楼层(共11层)</span>
+                          <span className="xie">/</span>
+                          <span>2002年建板塔结合</span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="roomPrice">
-                      <div className="price">
-                        <span className="cum">468</span>
-                        万
+                      <div className="roomPrice">
+                        <div className="price">
+                          <span className="cum">468</span>
+                          万
+                        </div>
+                        <div className="price-pre">48273.1 元/m²</div>
                       </div>
-                      <div className="price-pre">48273.1 元/m²</div>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li>
-                <div className="roomDetail">
-                  {/* 房子图片 */}
-                  <div className="roomImg"></div>
-                  {/* 房子的详情 */}
-                  <div className="roomInfo">
-                    <div className="roomTitle">
-                      <p>【首套首付215万】【套内面积86.49】</p>
-                    </div>
-                    <div className="roomXqing">
-                      <div className="roomMap">
-                        <span>益辰欣园</span>
-                        <span>2室1厅</span>
-                        <span className="line">|</span>
-                        <span>99.02平米</span>
-                        <span className="line">|</span>
-                        <span>东 西</span>
-                      </div>
-                      <div className="roomType">
-                        <span>二手房</span>
-                        <span className="xie">/</span>
-                        <span>低楼层(共11层)</span>
-                        <span className="xie">/</span>
-                        <span>2002年建板塔结合</span>
-                      </div>
-                    </div>
-                    <div className="roomPrice">
-                      <div className="price">
-                        <span className="cum">468</span>
-                        万
-                      </div>
-                      <div className="price-pre">48273.1 元/m²</div>
-                    </div>
+                  {/* 取消关注 */}
+                  <div className="delete-room" onClick={this.cancel}>
+                    取消关注
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>)
+              }
+              </ul>
             
-            {/* 取消关注 */}
-            <div className="delete-room underline" style={{display:'none'}}>
-              取消关注
-            </div>
+            
 
           </div>
 
