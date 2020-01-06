@@ -3,16 +3,14 @@ import './css/Login.less'
 
 export default class MyComponent extends Component{
   state = {
-    isPwdLogin:true,
+    isPwdLogin:false,
     type:'password',
     check:true,
     path:false,
     isClose:false
   }
   componentDidMount(){
-    console.log(this);
-    console.log(this.props.location.pathname);
-    let {path} = this.state
+    // let {path} = this.state
     if (this.props.location.pathname === '/newhome') {
       this.setState({path:true})
     }
@@ -31,7 +29,7 @@ export default class MyComponent extends Component{
     }
   }
   close = ()=>{
-    let {isClose} = this.state
+    // let {isClose} = this.state
     this.setState({isClose:true})
   }
   setCheck = ()=>{
@@ -39,7 +37,7 @@ export default class MyComponent extends Component{
     this.setState({check:!check})
   }
   goto = ()=>{
-    let {isClose} = this.state
+    // let {isClose} = this.state
     this.setState({isClose:false})
   }
   render(){
@@ -49,7 +47,7 @@ export default class MyComponent extends Component{
         <div className="login">
           <div className="close on" onClick={this.close}>×</div>
           <header>
-            <p className="title">手机快捷登录</p>
+            <p className="title">{isPwdLogin ? '账号密码登录' : '手机快捷登录'}</p>
             {isPwdLogin ? '' : <p className="noWarry">别担心，无账号自动注册不会导致手机号被泄露</p>}
           </header>
           <section>
