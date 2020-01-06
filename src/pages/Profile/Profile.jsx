@@ -28,13 +28,13 @@ export default class Profile extends Component{
                 headerArrs.map((header,index)=>{
                   return (
                     <li key={index}>
-                      <a href="#">{header}</a>
+                      <span>{header}</span>
                     </li>
                   )
                 })
               }
               <li className="downApp">
-                <a href="#">下载app</a>
+                <span>下载app</span>
                 {/* 下载APP */}
                 {/* <div className="download" style={{display:'none'}}> */}
                 <div className="download">
@@ -45,7 +45,7 @@ export default class Profile extends Component{
             </ul>
             <div className="logout" >
               <span>17**...</span>
-              <a className="logout-a" href="#">退出</a>
+              <span className="logout-a">退出</span>
             </div>
             
           </div>
@@ -172,7 +172,7 @@ export default class Profile extends Component{
           天津小屋信息科技有限公司 | 地址：天津经济技术开发区南港工业区综合服务区办公楼C座一层112室09单元 | 电话：10106188 <br/><br/>
           津ICP备18000836号-1 | © Copyright©2020 ke.com版权所有|
           &nbsp; 
-          <a className="ipc" href="#">ICP证</a>
+          <span className="ipc">ICP证</span>
         </div>
       </div>
     )
