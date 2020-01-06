@@ -13,6 +13,7 @@ export default class Profile extends Component{
     })
   }
   render(){
+    const headerArrs = ['二手房','新房','租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
     const {roomCount} = this.state
     return (
       <div className="profileContainer">
@@ -23,55 +24,30 @@ export default class Profile extends Component{
             <div className="header-logo"></div>
             {/* 头部导航 */}
             <ul className="header-nav">
-              <li>
-                <a href="#">二手房</a>
-              </li>
-              <li>
-                <a href="#">新房</a>
-              </li>
-              <li>
-                <a href="#">租房</a>
-              </li>
-              <li>
-                <a href="#">海外</a>
-              </li>
-              <li>
-                <a href="#">装修</a>
-              </li>
-              <li>
-                <a href="#">商业办公</a>
-              </li>
-              <li>
-                <a href="#">小区</a>
-              </li>
-              <li>
-                <a href="#">百科</a>
-              </li>
-              <li>
-                <a href="#">贝壳指数</a>
-              </li>
-              <li>
-                <a href="#">发布房源</a>
-              </li>
-              <li>
-                <a href="#">贝壳研究院</a>
-              </li>
-              <li>
+              {
+                headerArrs.map((header,index)=>{
+                  return (
+                    <li key={index}>
+                      <a href="#">{header}</a>
+                    </li>
+                  )
+                })
+              }
+              <li className="downApp">
                 <a href="#">下载app</a>
+                {/* 下载APP */}
+                {/* <div className="download" style={{display:'none'}}> */}
+                <div className="download">
+                  <i></i>
+                  <div className="downImg"></div>
+                </div>
               </li>
             </ul>
-            {/* 下载APP */}
-            <div className="download" style={{display:'none'}}>
-              <i></i>
-              <div className="downImg"></div>
+            <div className="logout" >
+              <span>17**...</span>
+              <a className="logout-a" href="#">退出</a>
             </div>
-          </div>
-        </div>
-        {/* 退出登录 */}
-        <div className="logoutContainer w">
-          <div className="logout">
-            <span className="logout-span">17**...</span>
-            <a className="logout-a" href="#">退出</a>
+            
           </div>
         </div>
         {/* 主体 */}

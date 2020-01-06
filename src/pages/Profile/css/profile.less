@@ -1,3 +1,4 @@
+
 .profileContainer{
   width: 100%;
   height: 100%;
@@ -26,64 +27,73 @@
             height: 100%;
             line-height: 55px;
             display: block;
-            margin: 0 12px;
+            margin: 0 8px;
             font-size: 16px;
             color: #ffffff;
           }
         }
-      }
-      .download{
-        width: 124px;
-        position: absolute;
-        top: 55px;
-        right: 0px;
-        z-index: 9;
-        background: #f9f9f9;
-        border-radius: 2px;
-        padding: 10px 0;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        i{
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-bottom: 10px solid #fff;
-          width: 0;
-          height: 0;
-          display: block;
-          position: absolute;
-          left: 53px;
-          top: -10px;
+        .downApp{
+          position: relative;
+          &:hover .download{
+            transform: scale(1);
+            transition: all 0.3s;
+          }
+          .download{
+            transform: scale(0);
+            transform-origin: top center;
+            transition: all 0.3s;
+            width: 124px;
+            position: absolute;
+            top: 55px;
+            left: 50%;
+            margin-left: -62px;
+            z-index: 9;
+            background: #f9f9f9;
+            border-radius: 2px;
+            padding: 10px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            animation: download 1s;
+            i{
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid #fff;
+              width: 0;
+              height: 0;
+              display: block;
+              position: absolute;
+              left: 53px;
+              top: -10px;
+            }
+            .downImg{
+              width: 100px;
+              height: 100px;
+              margin: 0 auto;
+              background: url('../images/download.png') no-repeat;
+              background-size: cover;
+            }
+          }
         }
-        .downImg{
-          width: 100px;
-          height: 100px;
-          margin: 0 auto;
-          background: url('../images/download.png') no-repeat;
-          background-size: cover;
+      }
+      .logout{
+        float: right;
+        span{
+          font-size: 14px;
+          color: #ffffff;
+          line-height: 55px;
+          margin-right: 8px;
+        }
+        .logout-a{
+          font-size: 14px;
+          color: #ffffff;
         }
       }
-    }
-  }
-  // 退出
-  .logoutContainer{
-    position: relative;
-    .logout{
-      width: 83px;
-      height: 56px;
-      line-height: 56px;
-      position: absolute;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      .logout-span,.logout-a{
-        font-size: 14px;
-        color: #d4cbcb;
-      }
+      
     }
   }
   // 主体
   .detailContainer{
     // height: 443px;
-    margin-top: 57px;
+    margin-top: 34px;
     display: flex;
     justify-content: space-between;
     .main-left{
@@ -276,7 +286,8 @@
   // 底部
   .footerContainer{
     height: 140px;
-    margin-top: 90px;
+    padding-top: 60px;
+    box-sizing: border-box;
     font-size: 12px;
     color: #9399a5;
     text-align: center;
