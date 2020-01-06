@@ -1,8 +1,6 @@
 import {SAVEUSER} from '../action_types'
 let initState = {
-  user:'',
-  token:'',
-  isLogin:user && token ? true : false
+  
 }
 
 export default function operaState(preState = initState,action) {
