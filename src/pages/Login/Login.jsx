@@ -12,7 +12,7 @@ export default class MyComponent extends Component{
   componentDidMount(){
     console.log(this);
     console.log(this.props.location.pathname);
-    let {path} = this.state
+    // let {path} = this.state
     if (this.props.location.pathname === '/newhome') {
       this.setState({path:true})
     }
@@ -31,7 +31,7 @@ export default class MyComponent extends Component{
     }
   }
   close = ()=>{
-    let {isClose} = this.state
+    // let {isClose} = this.state
     this.setState({isClose:true})
   }
   setCheck = ()=>{
@@ -39,7 +39,7 @@ export default class MyComponent extends Component{
     this.setState({check:!check})
   }
   goto = ()=>{
-    let {isClose} = this.state
+    // let {isClose} = this.state
     this.setState({isClose:false})
   }
   render(){
