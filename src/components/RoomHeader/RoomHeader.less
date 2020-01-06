@@ -1,0 +1,89 @@
+.roomList{
+  li{
+    height: 200px;
+    padding-top: 30px;
+    box-sizing: border-box;
+    border-bottom: 1px dashed #e9e9e9;
+    .roomDetail{
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      .roomImg{
+        width: 173px;
+        height: 130px;
+        background: url('./images/room.jpg') no-repeat;
+        background-size: cover;
+      }
+      .roomInfo{
+        width: 555px;
+        position: relative;
+        .roomTitle{
+          height: 44px;
+          box-sizing: border-box;
+          padding-bottom: 12px;
+          font-size: 19px;
+          color: #009de8;
+          &:hover{
+            text-decoration: underline;
+          }
+          p{
+            font-weight: bold;
+          }
+        }
+        .roomXqing{
+          height: 55px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .roomMap{
+            margin-top: 7px;
+            span{
+              font-size: 14px;
+              color: #101d37;
+              margin-right: 14px;
+            }
+            .line{
+              color: #dddddd;
+            }
+          }
+          .roomType{
+            span{
+              font-size: 14px;
+              color: #888888;
+            }
+            .xie{
+              margin: 0 10px;
+            }
+          }
+        }
+        .roomPrice{
+          // width: 78px;
+          // height: 64px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          position: absolute;
+          right: 0;
+          top: 50%;
+          margin-top: -32px;
+          .price{
+            color: #E4393C;
+            text-align: center;
+            span{
+              font-size: 30px;   
+              font-weight: 700;                 
+              color: #E4393C;
+              margin-right: 5px;
+            }
+          }
+          .price-pre{
+            margin-top: 7px;
+            font-size: 12px;
+            color: #9399a5;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

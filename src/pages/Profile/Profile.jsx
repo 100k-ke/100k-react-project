@@ -6,14 +6,15 @@ import RoomContent from '../../components/RoomContent/RoomContent'
 
 export default class Profile extends Component{
   state = {
-    roomCount:'',    //关注房子的数量
+    roomCount:0,    //关注房子的数量
     active:[true,false,false],     //用高亮样式,默认不用
     leftActiveArrs:[   //左侧菜单
       {name:'关注的房源',active:true},
       {name:'关注的小区',active:false},
       {name:'我的搜索',active:false},
       {name:'编辑资料',active:false},
-    ]
+    ],
+    pathname:''
   }
   changeActive1 = (index)=>{
     let {active}  = this.state
@@ -40,8 +41,9 @@ export default class Profile extends Component{
       return item
     })
     this.setState({
-      leftActiveArrs:newActive
+      leftActiveArrs:newActive,
     })
+    
   }
   // 挂载
   componentDidMount(){
@@ -52,12 +54,16 @@ export default class Profile extends Component{
     // 更新房子的数量的状态
     this.setState({
       roomCount:lis.length
-    })
+    })    
+  }
+  UNSAFE_componentWillReceiveProps(){
+    let {pathname} = this.props.location
+    this.setState({pathname})
   }
   render(){
     // 模拟数据
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
-    const {roomCount,active,leftActiveArrs}  = this.state
+    const {roomCount,active,leftActiveArrs,pathname}  = this.state
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -94,7 +100,9 @@ export default class Profile extends Component{
             </ul>
             <div className="logout" >
               <span>17**...</span>
-              <span className="logout-a">退出</span>
+              <Link to="/home">
+                <span className="logout-a">退出</span>
+              </Link>
             </div>
             
           </div>
@@ -113,7 +121,9 @@ export default class Profile extends Component{
               {
                 leftActiveArrs.map((left,index)=>{
                   return (
-                    <li key={index} onClick={()=>this.changeActive2(index)} className={leftActiveArrs[index].active ? 'active' : ''}>{left.name}</li>
+                    <Link to={`/profile/${index}`} key={index}>
+                      <li onClick={()=>this.changeActive2(index)} className={leftActiveArrs[index].active ? 'active' : ''}>{left.name}</li>
+                    </Link>
                   )
                 })
               }
@@ -123,7 +133,7 @@ export default class Profile extends Component{
           <div className="main-right">
 
             {/* 标题 */}
-            <RoomHeader roomCount={roomCount}/>
+            <RoomHeader roomCount={roomCount} pathname={pathname}/>
 
             {/* 关注的房子类型 */}
             <div className="room-list">
@@ -133,10 +143,10 @@ export default class Profile extends Component{
             </div>
 
             {/* 未关注房子的状态 */}
-            <RoomContent/>
+            <RoomContent roomCount={roomCount}/>
 
             {/* 关注房子的状态信息 */}
-            <ul className="roomList" ref="roomlist" style={{display:'none'}}>
+            <ul className={roomCount === 0 ? 'roomList display' : 'roomList'} ref="roomlist">
               <li>
                 <div className="roomDetail">
                   {/* 房子图片 */}
