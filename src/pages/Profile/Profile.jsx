@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import './css/profile.less'
 import RoomHeader from '../../components/RoomHeader/RoomHeader'
 import RoomContent from '../../components/RoomContent/RoomContent'
+import datas from '../../datas/roomDetail.json'
 
 export default class Profile extends Component{
   state = {
@@ -72,11 +73,13 @@ export default class Profile extends Component{
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
     const {roomCount,active1,active2,cancel}  = this.state
     let {pathname} = this.props.location
+    let roomDetail = datas.data.list
 
     //获取用户名的手机号
     let username = '17843089085'
     let reg=/(\d{2})\d{7}(\d{2})/;
     let newUsername = username.replace(reg, "$1****$2")
+
 
     return (
       <div className="profileContainer">
@@ -163,44 +166,54 @@ export default class Profile extends Component{
             <ul className={roomCount === 0 ? 'roomList display' : 'roomList'} ref="roomlist">
               {
                 cancel === true ? '' :
-                (<li>
-                  <div className="roomDetail">
-                    <div className="roomImg"></div>
-                    <div className="roomInfo">
-                      <div className="roomTitle">
-                        <p>【首套首付215万】【套内面积86.49】</p>
-                      </div>
-                      <div className="roomXqing">
-                        <div className="roomMap">
-                          <span>益辰欣园</span>
-                          <span>2室1厅</span>
-                          <span className="line">|</span>
-                          <span>99.02平米</span>
-                          <span className="line">|</span>
-                          <span>东 西</span>
+                roomDetail.map((room)=>{
+                  return (
+                    <li key={room.houseId}>
+                      <div className="roomDetail">
+                        <div className="roomImg">
+                          <img src={room.imgSrc} alt=""/>
                         </div>
-                        <div className="roomType">
-                          <span>二手房</span>
-                          <span className="xie">/</span>
-                          <span>低楼层(共11层)</span>
-                          <span className="xie">/</span>
-                          <span>2002年建板塔结合</span>
+                        <div className="roomInfo">
+                          <div className="roomTitle">
+                            <p>{room.title}</p>
+                          </div>
+                          <div className="roomXqing">
+                            <div className="roomMap">
+                              <span>{room.communityName}</span>
+                              <span>{room.roomNum}</span>
+                              <span className="line">|</span>
+                              <span>{room.square}平米</span>
+                              <span className="line">|</span>
+                              <span>{room.orientation}</span>
+                            </div>
+                            <div className="roomType">
+                              <Link to="/ershoufang">二手房</Link>
+                              <span className="xie">/</span>
+                              <span>{room.floorStat}(共{room.totalFloor}层)</span>
+                              <span className="xie">/</span>
+                              <span>{room.buildYear,room.hbtName}</span>
+                            </div>
+                          </div>
+                          <div className="roomPrice">
+                            <div className="price">
+                              <span className="cum">{room.new_price_str}</span>
+                              {room.new_price_str_unit}
+                            </div>
+                            <div className="price-pre">{room.new_unit_price_str} 元/m²</div>
+                          </div>
                         </div>
                       </div>
-                      <div className="roomPrice">
-                        <div className="price">
-                          <span className="cum">468</span>
-                          万
-                        </div>
-                        <div className="price-pre">48273.1 元/m²</div>
+                      {/* 取消关注 */}
+                      <div className="delete-room" onClick={this.cancel}>
+                        取消关注
                       </div>
-                    </div>
-                  </div>
-                  {/* 取消关注 */}
-                  <div className="delete-room" onClick={this.cancel}>
-                    取消关注
-                  </div>
-                </li>)
+                    </li>
+                  )
+                })
+                
+
+                  
+                
               }
               </ul>
             
