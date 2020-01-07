@@ -1,6 +1,10 @@
 import {SAVEUSER} from '../action_types'
+let user = localStorage.getItem('username')
+let token = localStorage.getItem('token')
 let initState = {
-  
+  username: user || '',
+  token: token || '',
+  isLogin:user && token ? true:false
 }
 
 export default function operaState(preState = initState,action) {
@@ -8,7 +12,7 @@ export default function operaState(preState = initState,action) {
   let newState
   switch (type) {
     case SAVEUSER:
-      newState = {user:data.user,token:data.token,isLogin:true}
+      newState = {username:data.username || data.phone,token:data.token,isLogin:true}
       return newState
     default:
       return preState

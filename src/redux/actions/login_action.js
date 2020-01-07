@@ -1,7 +1,7 @@
 import {SAVEUSER} from '../action_types'
 
-export const createSaveUserAction = value => {
-  localStorage.setItem('user',JSON.stringify(value.user))
+export const saveUserInfoAction = value => {
+    localStorage.setItem('user',JSON.stringify(value.username || value.phone))
   localStorage.setItem('token',value.token)
   return {type:SAVEUSER,data:value}
 }
