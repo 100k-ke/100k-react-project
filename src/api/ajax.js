@@ -26,10 +26,7 @@ instance.interceptors.response.use(
   (error)=>{
     if (error.response.status === 401) {
       message.error('用户数据校验失败，请重新登录！')
-<<<<<<< HEAD
-=======
       // store.dispatch(deleteUserInfoAction())
->>>>>>> eea18bc20f4c65dbda805861b8a3e49c3760dc63
     }else{ 
       message.error(error.message,1)
     }
