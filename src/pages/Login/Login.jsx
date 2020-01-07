@@ -23,11 +23,18 @@ class Login extends Component{
   }
   // 组件挂载执行以下代码
   componentDidMount(){
-    console.log('111');
     if (this.props.location.pathname === '/newhome') {
       this.setState({path:true})
     }
     this.setState({isClose:false})
+    let token = localStorage.getItem('token')
+    this.autoLogin(token)
+  }
+  // 自动登录
+  async autoLogin(token){
+    console.log('123123');
+    let result = await reqAutoLogin(token)
+    console.log(result);
   }
   // 改变登录的方式
   setIsPwd = ()=>{
@@ -60,7 +67,7 @@ class Login extends Component{
     this.setState({check:!check})
   }
   goto = ()=>{
-    this.setState({isClose:true})
+    this.setState({isClose:false})
   }
   // 点击获取验证码
   getCode = async (e)=>{
@@ -129,46 +136,46 @@ class Login extends Component{
   render(){
     let {isPwdLogin,type,check,path,isClose,time,msg} = this.state
     return (
-      <div className={isClose ? 'loginContainer active' : 'loginContainer'}>
-        <div className="login">
-          <div className="close on" onClick={this.close}>×</div>
+      <div className={isClose ? 'BCTloginContainer BCTactive' : 'BCTloginContainer'}>
+        <div className="BCTlogin">
+          <div className="BCTclose BCTon" onClick={this.close}>×</div>
           <header>
-            <p className="title">{isPwdLogin ? '账号密码登录' : '手机快捷登录'}</p>
-            {isPwdLogin ? '' : <p className="noWarry">别担心，无账号自动注册不会导致手机号被泄露</p>}
+            <p className="BCTtitle">{isPwdLogin ? '账号密码登录' : '手机快捷登录'}</p>
+            {isPwdLogin ? '' : <p className="BCTnoWarry">别担心，无账号自动注册不会导致手机号被泄露</p>}
           </header>
           <section>
             <form>
-              <div className="phone">
+              <div className="BCTphone">
                 <input ref={(input)=>this.username = input} type="text" maxLength="11" placeholder={isPwdLogin ? '请输入用户名' : '请输入手机号'}/>
               </div>
               {path && !isPwdLogin ? 
-                (<div className="picCode" >
+                (<div className="BCTpicCode" >
                   <input ref={(input)=>this.code = input} type="text" placeholder="请输入验证码"/>
-                  <img ref="img" className="pic" src="http://localhost:3000/captcha" alt="captcha"/>
+                  <img ref="img" className="BCTpic" src="http://localhost:3000/captcha" alt="captcha"/>
                 </div>) : ''}
-              <div className="smsCode">
-                <input 
+              <div className="BCTsmsCode">
+                <input
                   ref={(input)=>this.password = input} 
                   type={isPwdLogin && type === 'password' ? 'password' : 'text'} 
                   placeholder={isPwdLogin ? '请输入密码' : '请输入短信验证码'}
                 />
-                {isPwdLogin ? <div onClick={this.setType} className="eye on"></div> : <p className="btnCode on line" onClick={this.getCode} >{time !== 0 ? `${time}s后重新发送` : '获取验证码'}</p>}
+                {isPwdLogin ? <div onClick={this.setType} className="BCTeye BCTon"></div> : <p className="BCTbtnCode BCTon BCTline" onClick={this.getCode} >{time !== 0 ? `${time}s后重新发送` : '获取验证码'}</p>}
               </div>
-              {msg ? <div className="msg">{msg}</div> : ''}
-              <div className="check">
-                <div className="noLogin" onClick={this.setCheck}>
-                  <input className="box active" type="checkbox" onChange={this.setCheck} checked={check}/>
-                  <span className="on">7天内免登陆</span>
+              {msg ? <div className="BCTmsg">{msg}</div> : ''}
+              <div className="BCTcheck">
+                <div className="BCTnoLogin" onClick={this.setCheck}>
+                  <input className="BCTbox BCTactive" type="checkbox" onChange={this.setCheck} checked={check}/>
+                  <span className="BCTon">7天内免登陆</span>
                 </div>
-                {isPwdLogin ? <div className="forgetPwd on line">忘记密码</div> : ''}
+                {isPwdLogin ? <div className="BCTforgetPwd BCTon BCTline">忘记密码</div> : ''}
               </div>
-              <button className="btnLogin on" onClick={this.handleSubmit}>登录</button>
-              <p className="switchover on line" onClick={this.setIsPwd}>{isPwdLogin ? '手机快捷登录' : '账号密码登录'}</p>
+              <button className="BCTbtnLogin BCTon" onClick={this.handleSubmit}>登录</button>
+              <p className="BCTswitchover BCTon BCTline" onClick={this.setIsPwd}>{isPwdLogin ? '手机快捷登录' : '账号密码登录'}</p>
               {path ? 
-                '' : (<div className="footer">
+                '' : (<div className="BCTfooter">
                   <span>登录即代表同意</span>
-                  <a className="on line" href="https://www.ke.com/zhuanti/protocol">《贝壳隐私政策》</a>及
-                  <a className="on line" href="https://www.ke.com/zhuanti/serviceProtocol">《贝壳用户服务协议》</a>
+                  <a className="BCTon BCTline" href="https://www.ke.com/zhuanti/protocol">《贝壳隐私政策》</a>及
+                  <a className="BCTon BCTline" href="https://www.ke.com/zhuanti/serviceProtocol">《贝壳用户服务协议》</a>
                 </div>)
               }
             </form>
