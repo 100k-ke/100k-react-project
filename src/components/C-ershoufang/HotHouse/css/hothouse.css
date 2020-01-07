@@ -1,0 +1,129 @@
+.houseList{
+  width: 1150px;
+  margin: 20px auto 0;
+  display: flex;
+  justify-content: space-between;
+}
+.houseList .recommendHouse{
+  width: 932px;
+}
+.recommendHouse .sort{
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 0 0 #3072f6;
+  display: flex;
+}
+
+
+
+.houseItem{
+  height: 50px;
+  padding: 0 24px;
+  font-size: 16px;
+  color: #4a4a4a
+}
+.houseItem.sortSelect{
+  background: #3072f6;
+  color: #fff;
+  font-weight: bold;
+}
+.houseResult{
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+}
+.houseResult .found{
+    font-size: 22px;
+    color: #101d37;
+    font-weight:bold;
+}
+.houseResult .found>span{
+  color: #3072f6;
+}
+.houseResult .clear{
+  font-size: 14px;
+  color: #333;
+  vertical-align: middle
+}
+/* 单个房屋列表 */
+
+
+
+
+/* 右侧热门楼盘 */
+.houseList .hotHouseContainer{
+  width: 185px;
+  height: 100px;
+}
+.hotHouseContainer>div:first-child{
+  padding: 30px 0;
+}
+.hotHouseContainer .helpFind{
+  margin-top: 21px;
+  width: 110px;
+  height: 73px;
+  margin:0 auto  ;
+  background-image: url('../../imgs/sprite.png');
+  background-position: -261px -124px;
+  /* background-size:cover; */
+}
+.hotHouseContainer>div>span{
+  margin-top: 30px;
+  display: block;
+  background: #3072f6;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+}
+.hotHouse .title{
+  font-size: 16px;
+  color: #101d37;
+  line-height: 22px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+.hotHouse ul .houseItem{
+  margin-top: 20px;
+}
+.hotHouse ul .houseItem .hotImg{
+  width: 100%;
+  height: 128px;
+  background-image: url('../image/house1.jpg');
+}
+.hotHouseDetail{
+  display: flex;
+  margin-top: 12px;
+  justify-content: space-between;
+}
+.hotHouseDetail>span{
+  font-size: 14px;
+  color: #18253e;
+  max-width: 82px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hotHouseDetail .hotHouseCate .sale{
+  color: #3072f6;
+  background: rgba(107,153,246,.11);
+  margin-right: 4px;
+}
+.hotHouseDetail .hotHouseCate .size{
+  border: 1px solid #ced2d6;
+  color: #9399a5;
+  line-height: 14px;
+}
+.houseItem .priceWrapper span:first-child{
+  font-size: 14px;
+  color: #fe615a;
+  font-weight: bold;
+}
+.houseItem .priceWrapper span:last-child{
+  font-size: 14px;
+  color: #000019;
+  font-weight: bold;
+}
