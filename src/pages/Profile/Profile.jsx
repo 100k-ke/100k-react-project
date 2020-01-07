@@ -6,11 +6,12 @@ import RoomContent from '../../components/RoomContent/RoomContent'
 
 export default class Profile extends Component{
   state = {
-    roomCount:0,    //关注房子的数量
     active1:[true,false,false],     //用高亮样式,默认不用
     active2:[true,false,false,false],
+
+    roomCount:0,    //关注房子的数量
     pathname:'',   //获取当前的路径
-    cancel:false    //取消关注
+    cancel:false,    //取消关注
   }
   // 改变房子类型的样式
   changeActive1 = (index)=>{
@@ -59,9 +60,10 @@ export default class Profile extends Component{
     let lis = ul.children
     let index = this.props.match.params.index
     this.changeActive2(index * 1)
+
     // 更新房子的数量的状态
     this.setState({
-      roomCount:lis.length
+      roomCount:lis.length,
     })    
     
   }
@@ -70,6 +72,12 @@ export default class Profile extends Component{
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
     const {roomCount,active1,active2,cancel}  = this.state
     let {pathname} = this.props.location
+
+    //获取用户名的手机号
+    let username = '17843089085'
+    let reg=/(\d{2})\d{7}(\d{2})/;
+    let newUsername = username.replace(reg, "$1****$2")
+
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -121,7 +129,7 @@ export default class Profile extends Component{
             <div className="user-avatar"></div>
             {/* 用户名 */}
             <div className="user-name">
-              <span>欢迎你,17****85</span>
+              <span>欢迎你,{newUsername}</span>
             </div>
             <ul className="user-detail">
               <Link to="/profile/0">
