@@ -10,4 +10,4 @@ export const reqCodeLogin = (phone) => ajax.get('/reqCode',{params:{phone}})
 export const reqPhoneLogin = ({phone,code}) => ajax.post('/loginSms',{phone,code})
 
 // 自动登录
-export const reqAutoLogin = (token) => ajax.post('/auto_login',{params:{token}})
+export const reqAutoLogin = (token) => ajax.get('/auto_login',{params:{token}})

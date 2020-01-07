@@ -10,14 +10,14 @@ html,body{
     }
   }
 }
-.loginContainer{
+.BCTloginContainer{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .6);
-  &.active{
+  &.BCTactive{
     visibility: hidden;
   }
-  .login{
+  .BCTlogin{
     width: 300px;
     height: 381px;
     border-radius: 2px;
@@ -29,7 +29,7 @@ html,body{
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    .close{
+    .BCTclose{
       position: absolute;
       width: 20px;
       height: 20px;
@@ -44,14 +44,15 @@ html,body{
     header{
       width: 300px;
       height: 54px;
-      .title{
+      .BCTtitle{
         height: 40px;
         font-size: 20px;
         color: #101D37;
         font-weight: bold;
         vertical-align: top;
+        margin-bottom: 0px;
       }
-      .noWarry{
+      .BCTnoWarry{
         height: 14px;
         font-size: 14px;
         color: #AAA;
@@ -64,26 +65,26 @@ html,body{
       position: absolute;
       bottom: 40px;
       form{
-        .phone, .smsCode , .picCode{
+        .BCTphone, .BCTsmsCode , .BCTpicCode{
           width: 300px;
           height: 50px;
           padding-left: 16px;
           box-sizing: border-box;
           border: 1px solid #DBDBDB;
         }
-        .phone{
+        .BCTphone{
           border-radius: 2px 2px 0px 0px;
           input{
             width: 260px;
           }
         }
-        .picCode{
+        .BCTpicCode{
           border-radius: 2px 2px 0px 0px;
           border-top: none;
           input{
             width: 150px;
           }
-          .pic{
+          .BCTpic{
             float: right;
             width: 125px;
             height: 45px;
@@ -91,13 +92,13 @@ html,body{
             z-index: 90;
           }
         }
-        .smsCode{
+        .BCTsmsCode{
           border-radius: 0px 0px 2px 2px;
           border-top: none;
           input{
             width: 130px;
           }
-          .btnCode{
+          .BCTbtnCode{
             height: 18px;
             float: right;
             font-size: 14px;
@@ -108,7 +109,7 @@ html,body{
             font-weight: 400;
             border-left: 1px solid #DBDBDB;
           }
-          .eye{
+          .BCTeye{
             float: right;
             width: 18px;
             height: 12px;
@@ -128,7 +129,7 @@ html,body{
             color: #AAA;
           }
         }
-        .msg{
+        .BCTmsg{
           width: 300px;
           height: 14px;
           line-height: 14px;
@@ -136,15 +137,15 @@ html,body{
           color: #DB4C3F;
           padding-top: 10px;
         }
-        .check{
+        .BCTcheck{
           width: 300px;
           height: 23px;
-          margin: 20px 0;
-          .noLogin{
+          margin: 15px 0;
+          .BCTnoLogin{
             width: 120px;
             height: 23px;
             float: left;
-            .box{
+            .BCTbox{
               -webkit-appearance: none; 
               border: 1px solid #DBDBDB;
               vertical-align: middle;
@@ -154,7 +155,7 @@ html,body{
               margin: 3px 6px 0 0px;
               border-radius: 2px;
             }
-            .box[type="checkbox"]:checked{
+            .BCTbox[type="checkbox"]:checked{
               background-image: url('../imgs/check.png');
               background-repeat: no-repeat;
               background-position: center;
@@ -167,7 +168,7 @@ html,body{
               color: #555;
             }
           }
-          .forgetPwd{
+          .BCTforgetPwd{
             float: right;
             font-size: 14px;
             font-weight: bold;
@@ -176,7 +177,7 @@ html,body{
             height: 18px;
           }
         }
-        .btnLogin{
+        .BCTbtnLogin{
           width: 300px;
           height: 50px;
           padding: 0;
@@ -188,12 +189,14 @@ html,body{
           border-radius: 2px;
           color: #fff;
         }
-        .switchover{
+        .BCTswitchover{
+          display: inline-block;
           font-size: 14px;
           color: #3072F6;
-          padding-top: 24px;
+          padding-top: 20px;
+          margin-bottom: 0px;
         }
-        .footer{
+        .BCTfooter{
           font-size: 12px;
           color: #AAA;
           margin-top: 10px;
@@ -203,10 +206,10 @@ html,body{
           }
         }
       }
-      .on:hover{
+      .BCTon:hover{
         cursor: pointer;
       }
-      .line:hover{
+      .BCTline:hover{
         text-decoration: underline;
       }
     }
