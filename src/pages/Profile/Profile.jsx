@@ -1,18 +1,50 @@
 import React,{Component} from 'react'
+import {connect} from 'react-redux'
+import { Modal } from 'antd'
 import {Link} from 'react-router-dom'
 import './css/profile.less'
 import RoomHeader from '../../components/RoomHeader/RoomHeader'
 import RoomContent from '../../components/RoomContent/RoomContent'
 import datas from '../../datas/roomDetail.json'
+import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
-export default class Profile extends Component{
+@connect(
+  state => ({}),
+  {
+    deleteUserInfo:deleteUserInfoAction
+  }
+)
+class Profile extends Component{
   state = {
     active1:[true,false,false],     //用高亮样式,默认不用
     active2:[true,false,false,false],
-
     roomCount:0,    //关注房子的数量
     pathname:'',   //获取当前的路径
     cancel:false,    //取消关注
+    visible: false,   //是否展示提示框
+    roomDetail:datas.data.list
+  }
+  //展示提示框
+  showModal = () => {
+    this.setState({
+      visible: true,
+    })
+  }
+  //点击确定
+  handleOk = () => {
+    this.setState({
+      visible: false,
+    })
+    //删除用户名和token
+    this.props.deleteUserInfo()
+    //跳转到首页
+    this.props.history.replace('/home')
+  }
+  //点击取消
+  handleCancel = () => {
+    this.setState({
+      visible: false,
+    })
   }
   // 改变房子类型的样式
   changeActive1 = (index)=>{
@@ -25,7 +57,6 @@ export default class Profile extends Component{
       }
       return item
     })
-    
     this.setState({
       active1:newActive1
     })
@@ -47,10 +78,15 @@ export default class Profile extends Component{
     
   }
   //取消关注
-  cancel = ()=>{
+  cancel = (id)=>{
+    const {roomDetail} = this.state
+    let newRoom = roomDetail.filter((room)=>{
+      return room.houseId !== id 
+    })
     this.setState({
       cancel:true,
-      roomCount:0
+      roomDetail:newRoom,
+      roomCount:newRoom.length
     })
   }
   // 挂载
@@ -59,28 +95,24 @@ export default class Profile extends Component{
     let ul = this.refs.roomlist
     // 获取li的列表
     let lis = ul.children
-    let index = this.props.match.params.index
-    this.changeActive2(index * 1)
-
     // 更新房子的数量的状态
     this.setState({
       roomCount:lis.length,
-    })    
-    
+    }) 
+
+    //更新菜单样式
+    let index = this.props.match.params.index
+    this.changeActive2(index * 1)
   }
   render(){
     // 模拟数据
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
-    const {roomCount,active1,active2,cancel}  = this.state
+    const {roomCount,active1,active2,cancel,roomDetail}  = this.state
     let {pathname} = this.props.location
-    let roomDetail = datas.data.list
-
     //获取用户名的手机号
     let username = '17843089085'
     let reg=/(\d{2})\d{7}(\d{2})/;
     let newUsername = username.replace(reg, "$1****$2")
-
-
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -117,9 +149,17 @@ export default class Profile extends Component{
             </ul>
             <div className="logout" >
               <span>17**...</span>
-              <Link to="/home">
-                <span className="logout-a">退出</span>
-              </Link>
+              <span className="logout-a" onClick={this.showModal}>退出</span>
+              <Modal
+                title="提示"
+                visible={this.state.visible}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                okText='确定'
+                cancelText='取消'
+              >
+                <p>您是否确定退出登录?</p>
+              </Modal>
             </div>
             
           </div>
@@ -151,7 +191,6 @@ export default class Profile extends Component{
           </div>
           {/* 右侧 */}
           <div className="main-right">
-
             {/* 标题 */}
             <RoomHeader key={pathname} roomCount={roomCount} pathname={pathname}/>
             {/* 房子类型 */}
@@ -165,7 +204,7 @@ export default class Profile extends Component{
             {/* 关注房子的状态信息 */}
             <ul className={roomCount === 0 ? 'roomList display' : 'roomList'} ref="roomlist">
               {
-                cancel === true ? '' :
+                
                 roomDetail.map((room)=>{
                   return (
                     <li key={room.houseId}>
@@ -204,23 +243,15 @@ export default class Profile extends Component{
                         </div>
                       </div>
                       {/* 取消关注 */}
-                      <div className="delete-room" onClick={this.cancel}>
+                      <div className="delete-room" onClick={()=>this.cancel(room.houseId)}>
                         取消关注
                       </div>
                     </li>
                   )
-                })
-                
-
-                  
-                
+                }) 
               }
               </ul>
-            
-            
-
           </div>
-
         </div>
         {/* 底部 */}
         <div className="footerContainer w">
@@ -233,3 +264,5 @@ export default class Profile extends Component{
     )
   }
 }
+
+export default Profile
