@@ -57,10 +57,13 @@ export default class Profile extends Component{
     let ul = this.refs.roomlist
     // 获取li的列表
     let lis = ul.children
+    let index = this.props.match.params.index
+    this.changeActive2(index * 1)
     // 更新房子的数量的状态
     this.setState({
       roomCount:lis.length
     })    
+    
   }
   render(){
     // 模拟数据
