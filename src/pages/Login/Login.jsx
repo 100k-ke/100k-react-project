@@ -67,7 +67,7 @@ class Login extends Component{
     this.setState({check:!check})
   }
   goto = ()=>{
-    this.setState({isClose:false})
+    this.setState({isClose:true})
   }
   // 点击获取验证码
   getCode = async (e)=>{
