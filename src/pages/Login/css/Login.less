@@ -1,0 +1,217 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  #root{
+    width: 100%;
+    height: 100%;
+    .app{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.BCTloginContainer{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+  &.BCTactive{
+    visibility: hidden;
+  }
+  .BCTlogin{
+    width: 300px;
+    height: 381px;
+    border-radius: 2px;
+    position: relative;
+    box-sizing: content-box;
+    padding: 40px;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    .BCTclose{
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 15px;
+      right: 15px;
+      color: #101d37;
+      font-size: 18px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    header{
+      width: 300px;
+      height: 54px;
+      .BCTtitle{
+        height: 40px;
+        font-size: 20px;
+        color: #101D37;
+        font-weight: bold;
+        vertical-align: top;
+        margin-bottom: 0px;
+      }
+      .BCTnoWarry{
+        height: 14px;
+        font-size: 14px;
+        color: #AAA;
+        line-height: 1;
+      }
+    }
+    section{
+      width: 300px;
+      height: 302px;
+      position: absolute;
+      bottom: 40px;
+      form{
+        .BCTphone, .BCTsmsCode , .BCTpicCode{
+          width: 300px;
+          height: 50px;
+          padding-left: 16px;
+          box-sizing: border-box;
+          border: 1px solid #DBDBDB;
+        }
+        .BCTphone{
+          border-radius: 2px 2px 0px 0px;
+          input{
+            width: 260px;
+          }
+        }
+        .BCTpicCode{
+          border-radius: 2px 2px 0px 0px;
+          border-top: none;
+          input{
+            width: 150px;
+          }
+          .BCTpic{
+            float: right;
+            width: 125px;
+            height: 45px;
+            position: relative;
+            z-index: 90;
+          }
+        }
+        .BCTsmsCode{
+          border-radius: 0px 0px 2px 2px;
+          border-top: none;
+          input{
+            width: 130px;
+          }
+          .BCTbtnCode{
+            height: 18px;
+            float: right;
+            font-size: 14px;
+            padding: 0px 16px;
+            margin-top: 16px;
+            line-height: 18px;
+            color: #101D37;
+            font-weight: 400;
+            border-left: 1px solid #DBDBDB;
+          }
+          .BCTeye{
+            float: right;
+            width: 18px;
+            height: 12px;
+            margin-right: 16px;
+            margin-top: 16px;
+            background-image: url('../imgs/eye.png');
+            background-repeat: no-repeat;
+          }
+        }
+        input{
+          height: 40px;
+          margin-top: 5px;
+          border: none;
+          outline: none;
+          font-size: 14px;
+          &::placeholder{
+            color: #AAA;
+          }
+        }
+        .BCTmsg{
+          width: 300px;
+          height: 14px;
+          line-height: 14px;
+          font-size: 14px;
+          color: #DB4C3F;
+          padding-top: 10px;
+        }
+        .BCTcheck{
+          width: 300px;
+          height: 23px;
+          margin: 15px 0;
+          .BCTnoLogin{
+            width: 120px;
+            height: 23px;
+            float: left;
+            .BCTbox{
+              -webkit-appearance: none; 
+              border: 1px solid #DBDBDB;
+              vertical-align: middle;
+              float: left;
+              width: 16px;
+              height: 16px;
+              margin: 3px 6px 0 0px;
+              border-radius: 2px;
+            }
+            .BCTbox[type="checkbox"]:checked{
+              background-image: url('../imgs/check.png');
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 12px 10px;
+            }
+            span{
+              float: left;
+              font-size: 14px;
+              line-height: 23px;
+              color: #555;
+            }
+          }
+          .BCTforgetPwd{
+            float: right;
+            font-size: 14px;
+            font-weight: bold;
+            color: #3072F6;
+            width: 56px;
+            height: 18px;
+          }
+        }
+        .BCTbtnLogin{
+          width: 300px;
+          height: 50px;
+          padding: 0;
+          outline: none;
+          border: none;
+          font-size: 16px;
+          font-weight: bold;
+          background-color: #3072F6;
+          border-radius: 2px;
+          color: #fff;
+        }
+        .BCTswitchover{
+          display: inline-block;
+          font-size: 14px;
+          color: #3072F6;
+          padding-top: 20px;
+          margin-bottom: 0px;
+        }
+        .BCTfooter{
+          font-size: 12px;
+          color: #AAA;
+          margin-top: 10px;
+          a{  
+            text-decoration: none;
+            color: #AAA;
+          }
+        }
+      }
+      .BCTon:hover{
+        cursor: pointer;
+      }
+      .BCTline:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+}

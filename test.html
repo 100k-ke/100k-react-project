@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    var tel = 18810399133;
+    tel = "" + tel;
+    console.log(tel);
+    var reg=/(\d{2})\d{7}(\d{2})/;
+    var tel1 = tel.replace(reg, "$1****$2")
+    console.log(tel1);
+
+    // var tel = 18810399133;
+    // tel = "" + tel;
+    // console.log(tel);
+    // var tel1 = tel.substr(0,2) + "****" + tel.substr(9)
+    // console.log(tel1);
+  </script>
+</body>
+</html>

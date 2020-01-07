@@ -1,0 +1,323 @@
+
+.profileContainer{
+  width: 100%;
+  height: 100%;
+  // 头部
+  .headerContainer{
+    width: 100%;
+    height: 55px;
+    background: #3072f6;
+    .profile-header{
+      height: 100%;
+      position: relative;
+      .header-logo{
+        float: left;
+        width: 88px;
+        height: 30px;
+        background: url('../images/logo.png');
+        margin: 12px 0 0 10px;
+      }
+      .header-nav{
+        height: 100%;
+        float: left;
+        margin-left: 20px;
+        li{
+          float: left;
+          font-size: 16px;
+          color: #ffffff;
+          span,a{
+            height: 100%;
+            line-height: 55px;
+            display: block;
+            margin: 0 8px;
+            font-size: 16px;
+            color: #ffffff;
+          }
+        }
+        .downApp{
+          position: relative;
+          &:hover .download{
+            transform: scale(1);
+            transition: all 0.3s;
+          }
+          .download{
+            transform: scale(0);
+            transform-origin: top center;
+            transition: all 0.3s;
+            width: 124px;
+            position: absolute;
+            top: 55px;
+            left: 50%;
+            margin-left: -62px;
+            z-index: 9;
+            background: #f9f9f9;
+            border-radius: 2px;
+            padding: 10px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            animation: download 1s;
+            i{
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid #fff;
+              width: 0;
+              height: 0;
+              display: block;
+              position: absolute;
+              left: 53px;
+              top: -10px;
+            }
+            .downImg{
+              width: 100px;
+              height: 100px;
+              margin: 0 auto;
+              background: url('../images/download.png') no-repeat;
+              background-size: cover;
+            }
+          }
+        }
+      }
+      .logout{
+        float: right;
+        span{
+          font-size: 14px;
+          color: #ffffff;
+          line-height: 55px;
+          margin-right: 8px;
+        }
+        .logout-a{
+          font-size: 14px;
+          color: #ffffff;
+          cursor:pointer;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+      
+    }
+  }
+  // 主体
+  .detailContainer{
+    // height: 443px;
+    margin-top: 34px;
+    display: flex;
+    justify-content: space-between;
+    .main-left{
+      width: 152px;
+      height: 335px;
+      padding-top: 35px;
+      box-sizing: border-box;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      border: 1px solid #e6e5e5;
+      background: #ffffff;
+      .user-avatar{
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        background: url('../images/snow.png') -161px 0;
+      }
+      .user-name{
+        text-align: center;
+        padding: 15px 0;
+        font-size: 14px;
+        color: #101D37;
+      }
+      .user-detail{
+        li{
+          height: 40px;
+          text-align: center;
+          line-height: 40px;
+          font-size: 14px;
+          color: #555555;
+          cursor:pointer;
+          &.active{
+            background: #3072f6;
+            color: #ffffff;
+          }
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .main-right{
+      width: 827px;
+      padding: 35px;
+      box-sizing: border-box;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      border: 1px solid #e6e5e5;
+      background: #ffffff;
+      position: relative;
+      .title{
+        height: 29px;
+        line-height: 29px;
+        font-size: 22px;
+        font-weight: bold;
+        .room-count{
+          color: red;
+          font-weight: bold;
+        }
+      }
+      .room-list{
+        height: 39px;
+        margin-top: 20px;
+        border-bottom: 1px solid #e6e6e6;
+        background: #f8f8f9;
+        .room-span{
+          cursor:pointer;
+          display: block;
+          height: 100%;
+          float: left;
+          line-height: 39px;
+          padding: 0 25px;
+          font-size: 14px;
+          color: #888888;
+          &.active{
+            background: #e6e6e5;
+            color: #000000;
+          }
+        }
+      }
+      .roomList{
+        li{
+          &:hover .delete-room{
+            display: block;
+          }
+          height: 200px;
+          padding-top: 30px;
+          box-sizing: border-box;
+          border-bottom: 1px dashed #e9e9e9;
+          position: relative;
+          .roomDetail{
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            .roomImg{
+              width: 173px;
+              height: 130px;
+              // background: url('../images/room.jpg') no-repeat;
+              // background-size: cover;
+              img{
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .roomInfo{
+              width: 555px;
+              position: relative;
+              .roomTitle{
+                height: 44px;
+                box-sizing: border-box;
+                padding-bottom: 12px;
+                font-size: 19px;
+                color: #009de8;
+                cursor: pointer;
+                p{
+                  font-weight: bold;
+                  &:hover{
+                    text-decoration: underline;
+                  }
+                }
+              }
+              .roomXqing{
+                height: 55px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .roomMap{
+                  margin-top: 7px;
+                  span{
+                    font-size: 14px;
+                    color: #101d37;
+                    margin-right: 14px;
+                  }
+                  .line{
+                    color: #dddddd;
+                  }
+                }
+                .roomType{
+                  span,a{
+                    font-size: 14px;
+                    color: #888888;
+                  }
+                  .xie{
+                    margin: 0 10px;
+                  }
+                }
+              }
+              .roomPrice{
+                // width: 78px;
+                // height: 64px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                margin-top: -32px;
+                .price{
+                  color: #E4393C;
+                  text-align: center;
+                  span{
+                    font-size: 30px;   
+                    font-weight: 700;                 
+                    color: #E4393C;
+                    margin-right: 5px;
+                  }
+                }
+                .price-pre{
+                  margin-top: 7px;
+                  font-size: 12px;
+                  color: #9399a5;
+                  text-align: center;
+                }
+              }
+            }
+          }
+          // 取消关注
+          .delete-room{
+            display: none;
+            background-color: #555;
+            width: 85px;
+            height: 33px;
+            color: #fff;
+            text-align: center;
+            line-height: 33px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      
+      
+      
+    }
+  }
+  // 底部
+  .footerContainer{
+    height: 140px;
+    padding-top: 60px;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: #9399a5;
+    text-align: center;
+    .ipc{
+      cursor: pointer;
+      font-size: 12px;
+      color: #0000ee;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.display{
+  display: none;
+}
+
