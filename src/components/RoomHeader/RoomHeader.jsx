@@ -12,13 +12,15 @@ export default class RoomHeader extends Component{
       this.setState({title : '个 关注小区'})
     }else if(pathname === '/profile/2'){
       this.setState({title : '个 已保存搜索'})
+    }else if(pathname === '/profile/3'){
+      this.setState({title : '个 资料'})
     }
   }
   render(){
     const {roomCount,pathname} = this.props
     const {title} = this.state
     return (
-      <div className={pathname === '/profile/3' ? "title display" : "title"} >
+      <div className="title" >
         共 &nbsp;
         <span className="room-count">{roomCount}</span>&nbsp;
         {title}
