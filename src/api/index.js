@@ -2,8 +2,11 @@ import axios from './ajax'
 
 export const reqDetailRecommend = () => axios.get('/detail/nhRecommend')
 
-//新房+租房
+//新房
 export const reqnewHouse = ()=>axios.get(`/home/newHouse`)
+
+// 租房
+export const reqrentHouse = ()=>axios.get(`/home/rentHouse`)
 
 // 海外
 export const reqoverSeas = ()=>axios.get(`/home/overseas`)
@@ -24,7 +27,7 @@ export const reqCodeLogin = (phone) => axios.get('/reqCode',{params:{phone}})
 export const reqPhoneLogin = ({phone,code}) => axios.post('/loginSms',{phone,code})
 
 // 自动登录
-export const reqAutoLogin = (token) => axios.get('/auto_login',{params:{token}})
+export const reqAutoLogin = (username) => axios.post('/auto_login',{username})
 
 // 注册
 export const reqUsernameRegister = (username, password) => axios.post('/register',{username, password})

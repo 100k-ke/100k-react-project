@@ -74,8 +74,8 @@ class Login extends Component{
     this.setState({regCheck:!regCheck})
   }
   goto = ()=>{
-    this.username.value = ''
-    this.password.value = ''
+    // this.username.value = ''
+    // this.password.value = ''
     this.setState({isClose:true})
   }
   // 从注册页面转为登录页面
