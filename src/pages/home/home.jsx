@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import { Menu ,Dropdown,message} from 'antd';
-import {reqnewHouse,reqoverSeas,reqsecondHand,reqxiaoQu} from '../../api/index'
+import {reqnewHouse,reqoverSeas,reqsecondHand,reqxiaoQu,reqrentHouse} from '../../api/index'
 import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
 import {connect} from 'react-redux'
 import './css/home.less'
@@ -42,7 +42,9 @@ const menuAPP = (
     newHouses:[],
     overSeas:[],
     secHouses:[],
-    xiaoQus:[],
+    xiaoQus:[] ,
+    rentHouses:[], 
+
 
     // 动态显示登录、注册
     isClose:true,
@@ -69,17 +71,27 @@ const menuAPP = (
     }
   }
   // 发请求
-  getnewHouse = async()=>{
-    let result = await reqnewHouse()
-    const {status,datas,msg} = result
-       
+  getrentHouse = async()=>{
+    let result = await reqrentHouse()
+    const {status,datas,msg} = result   
     if(status === 1) {
-      this.setState({newHouses:datas.rent_house_list.list})
-       // redux
-      this.props.saveNewHouse(this.state.newHouses)
-    }
+      this.setState({rentHouses:datas.rent_house_list.list})
+
+    }  
     else message.error(msg)
   }
+  // 新房
+  getnewHouse = async()=>{
+    let result = await reqnewHouse()
+    const {status,datas,msg} = result  
+    if(status === 1) {
+      this.setState({newHouses:datas.data})
+      // redux
+      this.props.saveNewHouse(this.state.newHouses)
+    }else message.error(msg)  
+  }
+    
+  // }
   getoverSeas = async()=>{
     let result = await reqoverSeas()
     const {status,datas,msg} = result
@@ -101,6 +113,7 @@ const menuAPP = (
 
   componentDidMount(){
     this.getnewHouse()
+    this.getrentHouse()
     this.getoverSeas()
     this.getsecondHand()
     this.getxiaoQu()
@@ -118,7 +131,7 @@ const menuAPP = (
 
   // 广告的关闭按钮
   close=()=>{
-    console.log('aaaa')
+    // console.log('aaaa')
     this.setState({
       isShow:false
     })
@@ -199,7 +212,8 @@ const menuAPP = (
   }
 
   render(){
-    let {isShow,currentIndex,searchIndex,newHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists,isClose,isReg} = this.state
+    // let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists} = this.state
+    let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists,isClose,isReg} = this.state
     console.log(inputLists)
     // let {leftLists} = this
     // header的搜索与切换
@@ -215,8 +229,8 @@ const menuAPP = (
         ],
         [
           '南郎家园','青年公寓','上东8号','悦廷','华瀚国际','远大园五区','新金山酒店式公寓','葛布店北里','华美橡树岭','南郎家园',
-          '培新街乙5号院','宇丰苑','魏公村8号院','南郎家园','青年公寓','上东8号','悦廷','华瀚国际','远大园五区','新金山酒店式公寓','葛布店北里','华美橡树岭','南郎家园',
-          '培新街乙5号院','宇丰苑','魏公村8号院','南郎家园','青年公寓','上东8号','悦廷','华瀚国际','远大园五区','新金山酒店式公寓','葛布店北里','华美橡树岭','南郎家园',
+          '培新街乙5号院','宇丰苑','魏公村8号院','上东8号','悦廷','华瀚国际','远大园五区','新金山酒店式公寓','葛布店北里','华美橡树岭','南郎家园',
+          '培新街乙5号院','宇丰苑','魏公村8号院','青年公寓','上东8号','悦廷','华瀚国际','远大园五区','新金山酒店式公寓','葛布店北里','华美橡树岭','南郎家园',
           '培新街乙5号院','宇丰苑','魏公村8号院'
         ],
         ['北京房产','长春房产','重庆房产','长沙房产','东莞房产','大连房产','佛山房产','合肥房产','海口房产',
@@ -374,7 +388,7 @@ const menuAPP = (
                     </div>
                     <div className='sug-tips' style={{display:this.state.isInputShow ?'block':'none'}}>
                       <ul>
-                        <li className='hotName'>
+                        <li className='hotName1'>
                           <span className='hot-tips'>{this.state.isClear?'搜索历史':'热门搜索'}</span>
                           <span className='del' onClick={this.clearToRemen}>{this.state.isClear?'清空':''}</span>
                         </li>
@@ -506,12 +520,12 @@ const menuAPP = (
                    newHouses.map((newHouse,index)=>{
                      return(
                       <li className='clickHouse' key={index}>
-                        <a className='wrap' title={newHouse.bizcircle_name}>
-                          <img className='b' src={newHouse.list_picture} alt=""/>
+                        <a className='wrap' title={newHouse.build_name}>
+                          <img className='b' src={newHouse.cover_size_pic} alt=""/>
                           <div className='bg'></div>
                           <div className='title'>
-                            {newHouse.sub_desc}            
-                            <span className='price'><label >{newHouse.rent_price_listing}</label>元/平</span>    
+                            {newHouse.resblock_name}            
+                            <span className='price'><label >{newHouse.show_price}</label>元/平</span>    
                           </div>
                   
                         </a>
@@ -538,18 +552,18 @@ const menuAPP = (
             <ul>
 
               {
-                newHouses.map((newHouse,index)=>{
+                 rentHouses.map(( rentHouse,index)=>{
                   return(
                     <li className='clickHouse' key={index}>
-                      <div className='wrap' title={newHouse.house_title}>
-                        <img className='b' src={newHouse.list_picture} alt=""/>
+                      <div className='wrap' title={rentHouse.house_title}>
+                        <img className='b' src={rentHouse.list_picture} alt=""/>
                         <div className='bottom'>
-                          <p className='p01'>{newHouse.house_title}</p>
+                          <p className='p01'>{rentHouse.house_title}</p>
                           <div className="tips">
                             <div className='info'>
-                               {newHouse.bizcircle_name}/{newHouse.layout}
+                               {rentHouse.bizcircle_name}/{rentHouse.layout}
                             </div>
-                            <div className='price'>{newHouse.rent_price_listing}万/月</div>
+                            <div className='price'>{rentHouse.rent_price_listing}元/月</div>
                           </div>
                         </div>              
                       </div>
@@ -594,75 +608,12 @@ const menuAPP = (
                     </div>              
                   </div>
                 </li>
-                  )
-                  
-                
+                  )               
                 })
-              }
-             {/* <li className='clickHouse'>
-                <div className='wrap'>
-                  <div className="img">
-                    <div className="model"></div>
-                    <img className='b' src="https://image1.ljcdn.com/overseas/img-2986e9ce-d369-40d8-925d-33f0ebba2525.png.530x410.png,m_fill,ls_50,lg_north_west,l_fbk" alt=""/>
-                    <p className='dollar'>约49-85万英镑</p>
-                    <p className='RMB'>约49-778万英元</p>  
-                  </div>
-                  
-                  <div className='bottom'>
-                    <p className='country'>美国·伦敦</p>
-                    <p className='p01'>奥景海岸</p>
-                    <div className="tips">
-                      <div className='info'>
-                        1-3室 50-120㎡
-                      </div>
-                    </div>
-                  </div>              
-                </div>
-              </li>
-              <li className='clickHouse'>
-                <div className='wrap'>
-                  <div className="img">
-                    <div className="model"></div>
-                    <img className='b' src="https://image1.ljcdn.com/overseas/img-2986e9ce-d369-40d8-925d-33f0ebba2525.png.530x410.png,m_fill,ls_50,lg_north_west,l_fbk" alt=""/>
-                    <p className='dollar'>约49-85万英镑</p>
-                    <p className='RMB'>约49-778万英元</p>  
-                  </div>
-                  
-                  <div className='bottom'>
-                    <p className='country'>美国·伦敦</p>
-                    <p className='p01'>奥景海岸</p>
-                    <div className="tips">
-                      <div className='info'>
-                        1-3室 50-120㎡
-                      </div>
-                    </div>
-                  </div>              
-                </div>
-              </li>
-              <li className='clickHouse'>
-                <div className='wrap'>
-                  <div className="img">
-                    <div className="model"></div>
-                    <img className='b' src="https://image1.ljcdn.com/overseas/img-2986e9ce-d369-40d8-925d-33f0ebba2525.png.530x410.png,m_fill,ls_50,lg_north_west,l_fbk" alt=""/>
-                    <p className='dollar'>约49-85万英镑</p>
-                    <p className='RMB'>约49-778万英元</p>  
-                  </div>
-                  
-                  <div className='bottom'>
-                    <p className='country'>美国·伦敦</p>
-                    <p className='p01'>奥景海岸</p>
-                    <div className="tips">
-                      <div className='info'>
-                        1-3室 50-120㎡
-                      </div>
-                    </div>
-                  </div>              
-                </div>
-              </li> */}
-            
-            </ul>
+              }           
+           </ul>
           </div>
-          </div>
+        </div>
         {/* 底部版权信息 */}
         <div className="footer">
           <div className="wrapper">
@@ -792,7 +743,7 @@ const menuAPP = (
       </div>
     )
   }
-}
+ }
 
 export default connect(
   state => ({}),
