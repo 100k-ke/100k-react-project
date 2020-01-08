@@ -1,4 +1,4 @@
-import axios from './axios'
+import axios from './ajax'
 
 export const reqDetailRecommend = () => axios.get('/detail/nhRecommend')
 
@@ -26,7 +26,11 @@ export const reqPhoneLogin = ({phone,code}) => axios.post('/loginSms',{phone,cod
 // 自动登录
 export const reqAutoLogin = (token) => axios.get('/auto_login',{params:{token}})
 
+// 注册
+export const reqUsernameRegister = (username, password) => axios.post('/register',{username, password})
+
 // 二手房数据
 export const reqResold = () => axios.get('/resold')
+
 //发送房源信息的请求
 export const reqNewHouse = () => axios.get('/home/newHouse')
