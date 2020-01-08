@@ -13,7 +13,7 @@ export default function operaState(preState = initState,action) {
   let newState
   switch (type) {
     case SAVEUSER:
-      newState = {username:data.users.username || data.users.phone,token:data.users.token,isLogin:true}
+      newState = {username:data.username || data.phone,token:data.token,isLogin:true}
       return newState
     case DELETEUSER:
       newState = {username:'',token:'',isLogin:false}
