@@ -11,7 +11,7 @@ import Login from '../../pages/Login/Login'
     username:state.userInfo.username   // 从状态中取出username，用的时候：this.props.username
   }),
   {
-    logout:deleteUserInfoAction
+    deleteUserInfo:deleteUserInfoAction
   }
 )
 @withRouter
@@ -48,6 +48,7 @@ class Header extends Component {
     this.setState({
       isClose:true
     })
+  }
   //展示提示框
   showModal = () => {
     this.setState({
@@ -68,7 +69,6 @@ class Header extends Component {
       visible: false,
     })
   }
-}
   render (){
     const {isClose,isReg} = this.state
     const username = this.props.username
