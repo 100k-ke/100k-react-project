@@ -30,7 +30,6 @@ class ershoufang extends Component{
   render(){
     return(
       <div className="ershoufangComponent">
-        <Header/>
         <Headers/>
         <Nav/>
         <HotHouse/>
