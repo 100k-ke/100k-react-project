@@ -82,6 +82,7 @@ export default class Home extends Component{
     this.setState({
       inputLists:res.concat(inputLists)
     })
+    console.log(this)
   }
 
   // 广告的关闭按钮

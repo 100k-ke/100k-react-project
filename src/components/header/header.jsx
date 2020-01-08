@@ -1,13 +1,24 @@
 import React,{Component} from 'react' 
 import {withRouter} from 'react-router-dom'
-
+import {connect} from 'react-redux'
 import './header.less'
 
+@connect(
+  state => ({
+    username:state.userInfo.username   // 从状态中取出username，用的时候：this.props.username
+  }),
+  {
+
+  }
+)
 @withRouter
 class Header extends Component {
+  componentDidMount(){
+    console.log(this);
+  }
   render (){
     return(
-      <div className="topHeader">
+      <div className="topHeader" style={{display : this.props.location.pathname === '/home' ? 'none' :'block'}}>
         <div className="headerContanier">
           <ul className="headerContanierLeft">
             <li>首页</li>
@@ -24,10 +35,10 @@ class Header extends Component {
             <li>贝壳研究院</li>
             <li>下载App</li>
           </ul>
-          <div className="headerContanierRight">
+          <div className="headerContanierRight" style={{display:this.props.username?'block':'none'}}>
             <div className="login">
               <i></i>
-              <span>181****8263</span>
+              <span>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
               <span>退出</span>
             </div>
             <div className="hotPhone">
@@ -35,6 +46,10 @@ class Header extends Component {
               <span className="phone">热线电话</span>
               <span>010-8888886</span>
             </div>
+          </div>
+          <div className="headerContanierRight1" style={{display:this.props.username?'none':'block'}}>
+            <span >登录</span>
+            <span> / 注册</span>
           </div>
         </div>
       </div>

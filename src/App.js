@@ -4,21 +4,22 @@ import Profile from './pages/Profile/Profile'
 import Ershoufang from './pages/ershoufang/ershoufang'
 import Home from './pages/home/home'
 import Detail from './pages/detail/detail'
+import Login from './pages/Login/Login'
 import Header from './components/header/header'
 import NewHouse from './pages/Newhouse/Newhouse'
 
 
-export default class App extends Component{
+class App extends Component{
+  
   render(){
     return (
       <div className="app">
-        {/* <Header></Header> */}
+        <Header></Header>
         <Switch>
           <Route path="/home" component={Home}/>
           <Route path="/login" component={Login}/>
           <Route path="/detail/:id" component={Detail}/>
           <Route path="/ershoufang" component={Ershoufang}/>
-          <Redirect to="/home" />
           <Route path="/detail" component={Detail}/>
           <Route path="/profile/:index" component={Profile}/>
           <Route path="/newhouse" component={NewHouse}/>
@@ -28,3 +29,4 @@ export default class App extends Component{
     )
   }
 }
+export default App
