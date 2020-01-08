@@ -1,11 +1,14 @@
 import React,{ Component } from 'react';
 import './css/houseItem.css'
+
 export default class HouseItem extends Component{
   
   render(){
     let item = this.props.item
+    console.log(this);
+    
     return(
-      <div className="houseItem" >
+      <div className="houseItem" onClick={()=>{this.props.history.push(`/detail/${item.id}`)}}>
         <div className="houseImg" style={{backgroundImage:`url(${item.cover_size_src})`}}></div>
         <div className="houseDetail">
           <div className="houseName">
@@ -36,7 +39,7 @@ export default class HouseItem extends Component{
             </div>
             <span>总价{item.jiagewan}万/套</span>
           </div>
-          <div className="attention">关注</div>
+          {/* <div className="attention">关注</div> */}
         </div>
       </div>
     )

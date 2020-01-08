@@ -1,22 +1,21 @@
 import React,{Component} from 'react'
-// import { Checkbox } from 'antd';
+import {connect} from 'react-redux'
 import HouseItem from './houseItem/houseItem'
-import {reqResold} from '../../../api'
 import './css/hothouse.css'
 
-export default class MyComponent extends Component{
+@connect(
+  state => ({condition:state.condition})
+)
+class MyComponent extends Component{
   state={
-      list:[],
       titleArr:['默认排序','最新发布','总价','房屋单价','面积'],
       isShow:0
     }
   
-  async componentDidMount(){
-    let list = await reqResold()
+  componentDidMount(){
+    let list = this.props.condition
     console.log(list);
-    if (list.status===1) {
-      this.setState({list:list.datas.data}) 
-    }
+    // }
     console.log(this.state.list);
     
   }
@@ -28,8 +27,10 @@ export default class MyComponent extends Component{
     })
   }
   render(){
-    let {list,titleArr,isShow} = this.state
-    console.log(isShow)
+    let list = this.props.condition
+    // let {list,titleArr,isShow} = this.state
+    let {titleArr,isShow} = this.state
+    console.log(list)
     return (
       <div className="houseList">
         {/* 左侧楼盘列表 */}
@@ -88,3 +89,5 @@ export default class MyComponent extends Component{
     )
   }
 }
+
+export default MyComponent

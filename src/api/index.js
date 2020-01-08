@@ -14,5 +14,9 @@ export const reqAutoLogin = (token) => ajax.get('/auto_login',{params:{token}})
 
 // 二手房数据
 export const reqResold = () => ajax.get('/resold')
+
+// 二手房按需返回
+export const reqCondition = (data) => ajax.get('/condition',{params:{data}})
+
 //发送房源信息的请求
 export const reqNewHouse = () => ajax.get('/home/newHouse')
