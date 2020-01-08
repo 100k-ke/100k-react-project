@@ -9,7 +9,7 @@ import "./detail.less";
 
 @connect(
   state => ({
-    newHouseList:state.HomeNewHouse.newHouse
+    newHouseList:state.HomeNewHouse.data
   }),
   {
     // action的本质是函数
@@ -22,7 +22,7 @@ class Detail extends Component {
     recommendList:[],
     isShow:false,  // 鼠标落到户型小图上时出现遮罩
     isOpen:false,  // 控制户型大图显示隐藏
-    houseInfo:{}  // 保存房屋详情信息
+    houseInfo:[]  // 保存房屋详情信息
   }
   componentDidMount(){
     // 缩略图
@@ -40,7 +40,8 @@ class Detail extends Component {
     this.getRecommend()
     
     // 从路径中取出id值，根据id值在newHouseList中找到对应的数据显示
-    let id = this.props.match.params
+    let id = this.props.match.params.id
+    console.log(this.props.newHouseList);
     let newHouse = this.props.newHouseList.find((item)=>{
       return item.id == id
     })
@@ -73,6 +74,7 @@ class Detail extends Component {
   }
 
   render (){
+    let {houseInfo} = this.state
     return (
       <div>
         <div className="container">
@@ -90,7 +92,7 @@ class Detail extends Component {
               </header>
               <section>
                 <div className="sectionLeft">
-                  <h1>东南向三居室 业主随时签约</h1>
+                  <h1>{houseInfo.resblock_desc}</h1>
                   <div className="sub">此房满五年，业主在北京一套住房，首套契税1.5%，二套3%</div>
                 </div>
                 <div className="sectionRight">
@@ -191,9 +193,9 @@ class Detail extends Component {
             </div>
             <div className="bannerRight">
               <div className="priceCon">
-                <span className="price">279万元</span>
+                <span className="price">{houseInfo.lowest_total_price}万元</span>
                 <div className="unitPrice">
-                  <div className="p">49982.1 元/平米</div>
+                  <div className="p">{houseInfo.price} 元/平米</div>
                   <div className="taxtext">首付及税费情况请咨询经纪人</div>
                 </div>
               </div>
@@ -204,21 +206,21 @@ class Detail extends Component {
                 </div>
                 <div className="direction">
                   <p className="mainH">南 北</p>
-                  <p className="secH">平层/精装</p>
+                  <p className="secH">{houseInfo.house_type}/{houseInfo.decoration}</p>
                 </div>
                 <div className="area">
-                  <p className="mainH">55.82平米</p>
+                  <p className="mainH">{houseInfo.house_amount}平米</p>
                   <p className="secH">1993年建/板楼</p>
                 </div>
               </div>
               <div className="villageIntro">
                 <div className="villageName">
                   <span className="name">小区名称</span>
-                  <span className="info">青塔秀园</span>
+                  <span className="info">{houseInfo.build_name}</span>
                 </div>
                 <div className="villageArea">
                   <span className="name">小区位置</span>
-                  <span className="info">丰台 青塔</span>
+                  <span className="info">{houseInfo.resblock_name}</span>
                 </div>
                 <div className="watchTime">
                   <span className="name">看房时间</span>
@@ -226,7 +228,7 @@ class Detail extends Component {
                 </div>
                 <div className="beikeNum">
                   <span className="name">贝壳编号</span>
-                  <span className="info">19052618283198402342893 举报</span>
+                  <span className="info">{houseInfo.id} 举报</span>
                 </div>
               </div>
               <div className="houseDefender">
@@ -570,7 +572,7 @@ class Detail extends Component {
                   <ul className="valligeLeft">
                     <li>
                       <span className="valligeName">小区均价</span>
-                      <span className="valligeValue">47694元/㎡</span>
+                      <span className="valligeValue">{houseInfo.average_price}元/㎡</span>
                     </li>
                     <li>
                       <span className="valligeName">建筑年代</span>

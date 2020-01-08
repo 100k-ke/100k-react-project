@@ -54,9 +54,9 @@ class Header extends Component {
         }
         <div className="headerContanier">
           <ul className="headerContanierLeft">
-            <li>首页</li>
-            <li>二手房</li>
-            <li>新房</li>
+            <li onClick={()=>{this.props.history.push('/home')}}>首页</li>
+            <li onClick={()=>{this.props.history.push('/ershoufang')}}>二手房</li>
+            <li onClick={()=>{this.props.history.push('/newHouse')}}>新房</li>
             <li>租房</li>
             <li>海外</li>
             <li>装修</li>
@@ -71,8 +71,8 @@ class Header extends Component {
           <div className="headerContanierRight" style={{display:this.props.username === '/home' || '/profile' ? 'block':'none'}}>
             <div className="login">
               <i></i>
-              <span>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
-              <span>退出</span>
+              <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
+              <span onClick={()=>{this.logout()}}>退出</span>
             </div>
             <div className="hotPhone">
               <i></i>
