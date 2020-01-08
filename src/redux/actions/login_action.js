@@ -14,5 +14,7 @@ export const saveUserInfoAction = value => {
 export const deleteUserInfoAction = () => {
   localStorage.removeItem('user')
   localStorage.removeItem('token')
+  sessionStorage.removeItem('user')
+  sessionStorage.removeItem('token')
   return {type:DELETEUSER}
 }

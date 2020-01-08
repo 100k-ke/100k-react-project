@@ -15,12 +15,10 @@ export default class App extends Component{
       <div className="app">
         <Header></Header>
         <Switch>
-          <Route path="/profile" component={Profile}/>
           <Route path="/home" component={Home}/>
           <Route path="/login" component={Login}/>
           <Route path="/detail" component={Detail}/>
           <Route path="/ershoufang" component={Ershoufang}/>
-          <Redirect to="/ershoufang"/>
           <Route path="/profile/:index" component={Profile}/>
           <Route path="/test" component={Test}/>
           <Route path="/newhouse" component={NewHouse}/>
