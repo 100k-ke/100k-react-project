@@ -218,6 +218,10 @@ const menuAPP = (
 
   render(){
     let {username} = this.props
+    let user = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user')) //获取本地用户名
+    //正则*号代替手机号
+    let reg=/(\d{2})\d{7}(\d{2})/;                          
+    username = username.replace(reg, "$1****$2")
     // let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists} = this.state
     let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists,isClose,isReg} = this.state
     console.log(inputLists)
