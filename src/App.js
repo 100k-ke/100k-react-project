@@ -5,12 +5,8 @@ import Ershoufang from './pages/ershoufang/ershoufang'
 import Home from './pages/home/home'
 import Detail from './pages/detail/detail'
 import NewHouse from './pages/Newhouse/Newhouse'
-import {reqAutoLogin} from './api'
-import {saveUserInfoAction} from './redux/actions/login_action'
-
 
 export default class App extends Component{
-  
   render(){
     return (
       <div className="app">

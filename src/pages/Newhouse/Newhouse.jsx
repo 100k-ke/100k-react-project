@@ -6,6 +6,7 @@ import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
 import HotHouse from '../../components/NewHouse/HotHouse/HotHouse'
 import MainNav from '../../components/NewHouse/MainNav/MainNav'
 import Header from "../../components/header/header";
+import Footer from '../../components/footer/footer'
 import './css/newhouse.css'
 
 @connect(
@@ -70,6 +71,9 @@ class NewHouse extends Component{
         <MainNav/>
         {/* 楼盘列表 */}
         <HotHouse houseList={houseList}/>
+        <div className="footer">
+          <Footer/>
+        </div>
       </div>
     )
   }

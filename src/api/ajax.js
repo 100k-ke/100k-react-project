@@ -1,6 +1,5 @@
 import axios from 'axios'
 import qs from 'querystring'
-import {message} from 'antd'
 import store from '../redux/store'
 
 // 创建instance，相比axios而言，少了一些方法：create、all...

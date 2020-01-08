@@ -1,7 +1,18 @@
 import React,{Component} from 'react'
 import { Checkbox } from 'antd'
+import {connect} from 'react-redux'
+import { saveConditionAction } from "../../../redux/actions/esf_action";
+import {reqResold} from '../../../api'
 import './css/nav.css'
-export default class Nav extends Component{
+
+@connect(
+  state => ({}),
+  {
+    saveCondition:saveConditionAction
+  }
+)
+
+class Nav extends Component{
   state={
     isShow:true,
     address:[
@@ -21,18 +32,77 @@ export default class Nav extends Component{
         title:'房源特色',
         listArr:['必看好房','满五年','近地铁','VR房源','VR看装修','7日新上','随时看房']
       }
-    ]
+    ],
+    condition:{},
+    titleList:['jiagekey','fangxingkey','mianjikey','fangyuankey','chaoxiangkey','loucengkey','loulingkey','zhuangxiukey','yongtukey','diantikey','gongnuankey','quanshukey','leixingkey']
   }
-  onChange(checkedValues) {
-    console.log('checked = ', checkedValues);
+  async onChange(checkedValues,index) {
+    let {condition} = this.state
+    let arr = []
+    checkedValues.forEach((item)=> {
+      this.state.address[index].listArr.forEach((p,index)=>{
+        if(p===item){
+          arr.push(index)
+        }
+      })
+    })
+    
+    condition[this.state.titleList[index]]=arr
+    this.setState({
+      condition
+    })
+    let dataobj = await reqResold()
+    let data = dataobj.datas.data
+    let obj=condition
+    // {jiagekey:[6]}↑
+    let list = Object.keys(obj)
+    // [jiagekey]
+    let newData = []
+    let num=0
+    if (true) {
+      for (let key in condition) {
+        // if (condition[key]) {
+        //   const element = object[key];
+          console.log(condition[key].length);
+          if (condition[key].length) {
+            num++
+          }
+        // }
+      }
+    }
+    if(num!==0){
+      console.log(2);
+      
+      // 遍历后台数据
+      for (let m = 0; m < data.length; m++) {
+        if (list.length) {
+          // 遍历传进来的已选的key   data[m]
+          for (let i = 0; i < list.length; i++) {
+            if (obj[list[i]].length) {
+              // (因为每一项都有可能多个值,所有是数组)
+              for (let k = 0; k < obj[list[i]].length; k++) {
+                if (obj[list[i]][k]==data[m][list[i]]) {
+                  // 防止重复添加
+                  let a = newData.findIndex((item)=>data[m].id===item.id)
+                  if(a===-1){
+                    newData.push(data[m])
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }else{
+      newData=data
+    }
+    console.log(newData);
+    this.props.saveCondition(newData)
   }
   heightVariety(index){
-    // alert(this)
     console.log(this.refs["list"+index]);
     
     this.refs["list"+index].className='heights'
-    // this.refs["item"+index].className=""
-    // this.refs["item"+index].style="height:calc()"
     this.refs["item"+index].style="display: none"
 
   }
@@ -136,7 +206,7 @@ export default class Nav extends Component{
             // text =
             <div className="select" key={index}>
               <div ref={"list"+index}>
-                <span className="title">{add.title}</span><Checkbox.Group className="item" options={add.listArr} defaultValue={['Apple']} onChange={this.onChange} /><br/>
+                <span className="title">{add.title}</span><Checkbox.Group className="item" options={add.listArr} defaultValue={['Apple']} onChange={(a)=>{this.onChange(a,index)}} /><br/>
                 {add.listArr.length>6?<span className="more" ref={"item"+index} onClick={()=>{this.heightVariety(index)}}>点击查看更多</span>:''}
               </div>
             </div>
@@ -149,3 +219,4 @@ export default class Nav extends Component{
     )
   }
 }
+export default Nav

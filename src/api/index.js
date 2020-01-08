@@ -1,39 +1,39 @@
-import axios from './ajax'
+import ajax from './ajax'
 
-export const reqDetailRecommend = () => axios.get('/detail/nhRecommend')
+export const reqDetailRecommend = () => ajax.get('/detail/nhRecommend')
 
 //新房
-export const reqnewHouse = ()=>axios.get(`/home/newHouse`)
+export const reqnewHouse = ()=>ajax.get(`/home/newHouse`)
 
 // 租房
-export const reqrentHouse = ()=>axios.get(`/home/rentHouse`)
+export const reqrentHouse = ()=>ajax.get(`/home/rentHouse`)
 
 // 海外
-export const reqoverSeas = ()=>axios.get(`/home/overseas`)
+export const reqoverSeas = ()=>ajax.get(`/home/overseas`)
 
 // 二手房
-export const reqsecondHand = ()=>axios.get(`/home/secondHand`)
+export const reqsecondHand = ()=>ajax.get(`/home/secondHand`)
 
 // 小区
-export const reqxiaoQu = ()=>axios.get(`/home/vallige`)
+export const reqxiaoQu = ()=>ajax.get(`/home/vallige`)
 
 // 发送用户名登录请求
-export const reqUsernameLogin = (username,pwd) => axios.post('/loginText',{username,pwd})
+export const reqUsernameLogin = (username,pwd) => ajax.post('/loginText',{username,pwd})
 
 // 发送短信验证码请求
-export const reqCodeLogin = (phone) => axios.get('/reqCode',{params:{phone}})
+export const reqCodeLogin = (phone) => ajax.get('/reqCode',{params:{phone}})
 
 // 发送短信登录请求
-export const reqPhoneLogin = ({phone,code}) => axios.post('/loginSms',{phone,code})
+export const reqPhoneLogin = ({phone,code}) => ajax.post('/loginSms',{phone,code})
 
 // 自动登录
-export const reqAutoLogin = (username) => axios.post('/auto_login',{username})
+export const reqAutoLogin = (username) => ajax.post('/auto_login',{username})
 
 // 注册
-export const reqUsernameRegister = (username, password) => axios.post('/register',{username, password})
+export const reqUsernameRegister = (username, password) => ajax.post('/register',{username, password})
 
 // 二手房数据
-export const reqResold = () => axios.get('/resold')
+export const reqResold = () => ajax.get('/resold')
 
 //发送房源信息的请求
-export const reqNewHouse = () => axios.get('/newHouse/newHouseRec')
+export const reqNewHouse = () => ajax.get('/newHouse/newHouseRec')

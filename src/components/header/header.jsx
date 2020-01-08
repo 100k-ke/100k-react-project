@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import { deleteUserInfoAction } from "../../redux/actions/login_action";
 import './header.less'
 import Login from '../../pages/Login/Login'
+import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
   state => ({
@@ -76,7 +77,7 @@ class Header extends Component {
             <li>贝壳研究院</li>
             <li>下载App</li>
           </ul>
-          <div className="headerContanierRight" style={{display:this.props.username?'block':'none'}}>
+          <div className="headerContanierRight" style={{display:this.props.username === '/home' || '/profile' ? 'block':'none'}}>
             <div className="login">
               <i></i>
               <span onClick={()=>{this.props.history.push('/profile/0')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>

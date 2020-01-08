@@ -375,9 +375,8 @@ const menuAPP = (
                           })
                         }
                     </ul>
-                  {/* 小三角:取到【点击的下标】时对应的【数组】里的【当前值】 */}
+                  {/* 小三角:取到【点击的下标indexSearch】时对应的【数组】里的【当前值】 */}
                     <i style={{position:'absolute',left:leftLists[indexSearch]}}></i>
-
                   </div>
                   <div className='search clear'>
                     <div className='box'>
