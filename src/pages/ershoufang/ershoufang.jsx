@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import Nav from '../../components/C-ershoufang/nav/nav'
 import HotHouse from '../../components/C-ershoufang/HotHouse/HotHouse'
-// import Header from "../../components/header/header";
+import Header from "../../components/header/header";
 import {connect} from 'react-redux'
 import Headers from '../../components/C-ershoufang/header/header'
 import {reqResold} from '../../api'
@@ -30,6 +30,7 @@ class ershoufang extends Component{
   render(){
     return(
       <div className="ershoufangComponent">
+        <Header/>
         <Headers/>
         <Nav/>
         <HotHouse/>
