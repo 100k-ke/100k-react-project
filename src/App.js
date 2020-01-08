@@ -11,9 +11,7 @@ export default class App extends Component{
     return (
       <div className="app">
         <Switch>
-          <Route path="/profile" component={Profile}/>
           <Route path="/ershoufang" component={Ershoufang}/>
-          <Redirect to="/ershoufang"/>
           <Route path="/profile/:index" component={Profile}/>
           <Route path="/login" component={Login}/>
           <Route path="/newhouse" component={NewHouse}/>
