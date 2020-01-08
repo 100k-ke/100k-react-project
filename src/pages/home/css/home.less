@@ -17,7 +17,7 @@ html,body{
   .header{
     background: url(../images/bg_header@1x.jpg) no-repeat;
     width: 100%;
-    height: 566px;
+    height: 600px;
     padding-top: 34px;
     background-position: center 0;
     display: block;
@@ -296,9 +296,6 @@ html,body{
                   width: 590px;
                   height: 50px;
                   .text{
-                    // position: absolute;
-                    // left: 0;
-                    // top: 0;
                     padding-left: 20px;
                     width: 494px;
                     border: 0;
@@ -306,6 +303,7 @@ html,body{
                     border-radius: 4px;
                     font-size: 16px;
                     float: left;
+                    margin: 0;
                     &:focus{
                       outline: none;
                     }
@@ -324,7 +322,7 @@ html,body{
                     text-align: center;
                     color: #fff;
                     transition: all .3s ease-in-out;
-                    margin-right: 0;
+                    margin: 0;
                   }
                   ._i{
                     background-image: url(../images/sprite.png);
@@ -373,13 +371,15 @@ html,body{
                   left: -1px;
                   top: -1px;
                   z-index: 1002;
-                  .hotName{
+                  .hotName1{
+                    position: absolute;
                     background: #f4f7f9;
                     color: #849aae;
                     height: 35px;
                     width: 514px;
                     line-height: 35px;
                     padding: 3px 20px;
+                    font-size: 16px;
                     .hot-tips{
                       color: #849aae;
                       line-height: 35px;
@@ -401,6 +401,7 @@ html,body{
                       height: 35px;
                       line-height: 35px;
                       padding: 3px 20px;
+                      font-size: 16px;
                     }
                   }
                 }

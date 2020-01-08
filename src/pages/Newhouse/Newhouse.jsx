@@ -4,8 +4,10 @@ import { Input } from 'antd';
 import HotHouse from '../../components/NewHouse/HotHouse/HotHouse'
 import MainNav from '../../components/NewHouse/MainNav/MainNav'
 
-export default class Profile extends Component{
-  
+export default class NewHouse extends Component{
+  componentDidMount(){
+    console.log(this);
+  }
   render(){
     return (
       <div className="newhouseContainer">
