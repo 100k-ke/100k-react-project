@@ -12,7 +12,7 @@ import {saveUserInfoAction} from './redux/actions/login_action'
 
 export default class App extends Component{
   componentDidMount(){
-    // saveUserInfoAction()
+    // saveUserInfoAction({data:{},check:'ture'})
     // let username = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'))
     // this.autoLogin(username)
   }
