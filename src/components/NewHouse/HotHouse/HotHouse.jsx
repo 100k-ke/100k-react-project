@@ -1,27 +1,10 @@
 import React,{Component} from 'react'
-import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { Checkbox } from 'antd';
-import {reqNewHouse} from '../../../api/index'
-import {saveHouseListAction} from '../../../redux/actions/newhouse_action'
 import './css/hothouse.css'
-@connect(
-  state => ({houseList:state.houseList.houseList}),
-  {
-    saveHouseList:saveHouseListAction
-  }
-)
 @withRouter
 class Hothouse extends Component{
-  componentDidMount(){
-    this.getHouseList()
-    console.log(this)
-  }
-  async getHouseList(){
-    let result = await reqNewHouse()
-    let houseList = result.datas.data
-    this.props.saveHouseList(houseList)
-  }
+
   render(){
     const filters = ['在售','住宅','VR看房','优惠楼盘','近期开盘']
     const {houseList} = this.props
@@ -97,7 +80,7 @@ class Hothouse extends Component{
             <ul>
               {
                 houseList.map((house,index)=>
-                  <li key={index}>
+                  <li key={index} onClick={()=>{this.props.history.push(`/detail/${house.id}`)}}>
                     <div className="hotImg" style={{backgroundImage:`url(${house.cover_size_pic})`}}></div>
                     <div className="hotHouseDetail">
                       <span>{house.build_name}</span>

@@ -1,31 +1,36 @@
 import React,{Component} from 'react'
-import './css/newhouse.css'
+import {connect} from 'react-redux'
 import { Input } from 'antd';
+import {reqNewHouse} from '../../api/index'
+import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
 import HotHouse from '../../components/NewHouse/HotHouse/HotHouse'
 import MainNav from '../../components/NewHouse/MainNav/MainNav'
+import './css/newhouse.css'
 
-export default class NewHouse extends Component{
-  componentDidMount(){
-    console.log(this);
+@connect(
+  state => ({houseList:state.HomeNewHouse.newHouses}),
+  {
+    saveNewHouse:createSaveNewHouse
   }
+)
+class NewHouse extends Component{
+  state={
+    houseList:[]
+  }
+  componentDidMount(){
+    this.getHouseList()
+  }
+  async getHouseList(){
+    let result = await reqNewHouse()
+    let houseList = result.datas.data
+    this.props.saveNewHouse(houseList)
+    this.setState({houseList})
+  }
+
   render(){
+    const {houseList} = this.state
     return (
       <div className="newhouseContainer">
-        <div className="headerContainer">
-          <div className="header">
-            <ul>
-              <li>首页</li>
-              <li>二手房</li>
-              <li>新房</li>
-              <li>租房</li>
-              <li>海外</li>
-              <li>装修</li>
-              <li>小区</li>
-              <li>百科</li>
-            </ul>
-            <div>登录/注册</div>
-          </div>
-        </div>
         <div className="mainnavContainer">
           <div className="mainnav">
             <div className="navTop">
@@ -62,8 +67,9 @@ export default class NewHouse extends Component{
         {/* <!-- 筛选过滤 --> */}
         <MainNav/>
         {/* 楼盘列表 */}
-        <HotHouse/>
+        <HotHouse houseList={houseList}/>
       </div>
     )
   }
 }
+export default NewHouse
