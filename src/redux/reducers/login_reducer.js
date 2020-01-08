@@ -1,6 +1,7 @@
 import {SAVEUSER,DELETEUSER} from '../action_types'
-let user = localStorage.getItem('username')
-let token = localStorage.getItem('token')
+let user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'))
+let token = JSON.parse(localStorage.getItem('token') || sessionStorage.getItem('token'))
+console.log(user);
 let initState = {
   username: user || '',
   token: token || '',
