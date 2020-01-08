@@ -13,4 +13,4 @@ export const reqPhoneLogin = ({phone,code}) => ajax.post('/loginSms',{phone,code
 export const reqAutoLogin = (token) => ajax.get('/auto_login',{params:{token}})
 
 //发送房源信息的请求
-export const reqNewHouse = () => ajax.get('/home/newHouse')
+export const reqNewHouse = () => ajax.get('/newHouse/newHouseRec')
