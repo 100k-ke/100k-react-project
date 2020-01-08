@@ -10,7 +10,7 @@ import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
   // state => ({username : state.userInfo.username}),
-  state => ({}),
+  state => ({isLogin:state.userInfo.isLogin}),
   {
     deleteUserInfo:deleteUserInfoAction
   }
