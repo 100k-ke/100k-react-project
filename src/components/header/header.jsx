@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './header.less'
+import Login from '../../pages/Login/Login'
 
 @connect(
   state => ({
@@ -13,12 +14,44 @@ import './header.less'
 )
 @withRouter
 class Header extends Component {
+  state = {
+    // 动态显示登录、注册
+    isClose:true,
+    isReg:false 
+  }
+  // 动态显示登录、注册的方法
+  showLogin = (event)=>{
+    console.log('aaa');
+    if (event === true) {
+      console.log('111');
+      this.setState({isClose: event})
+    }else{
+      event.preventDefault()
+      console.log('222');
+      this.setState({isClose: false})
+    }
+  }
+  showReg = (event)=>{
+    if (event === false) {
+      this.setState({isReg:false})
+    }else{
+      event.preventDefault()
+      this.setState({isReg:true})
+    }
+  }
   componentDidMount(){
     console.log(this);
   }
   render (){
+    const {isClose,isReg} = this.state
     return(
       <div className="topHeader" style={{display : this.props.location.pathname === '/home' ? 'none' :'block'}}>
+        {
+          isClose ? '' : <Login isShow={this.showLogin}/>
+        }
+        {
+          isReg ? <Login isShowReg={this.showReg}/> : ''
+        }
         <div className="headerContanier">
           <ul className="headerContanierLeft">
             <li>首页</li>
@@ -48,8 +81,8 @@ class Header extends Component {
             </div>
           </div>
           <div className="headerContanierRight1" style={{display:this.props.username?'none':'block'}}>
-            <span >登录</span>
-            <span> / 注册</span>
+            <span onClick={this.showLogin}>登录</span>
+            <span onClick={this.showReg}> / 注册</span>
           </div>
         </div>
       </div>
