@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import { Pagination,Row, Col  } from 'antd';
 import {connect} from 'react-redux'
 import Swiper from 'swiper';
-import { createSaveAttensionHouse } from "../../redux/actions/actions";
+import { createSaveAttensionHouse } from "../../redux/actions/detailHouse_actions";
 import Footer from "../../components/footer/footer";
 import { reqDetailRecommend } from "../../api/index";
 import "./detail.less";
@@ -12,8 +12,8 @@ class Detail extends Component {
   state = {
     navList:['商圈二手房','热门二手房','二手房','推荐小区','推荐楼盘','贝壳规则中心'],
     recommendList:[],
-    isShow:false,
-    isOpen:false
+    isShow:false,  // 鼠标落到户型小图上时出现遮罩
+    isOpen:false  // 控制户型大图显示隐藏
   }
   componentDidMount(){
     // 缩略图
@@ -41,6 +41,7 @@ class Detail extends Component {
       
     }
   }
+  // 显示大图
   showBigLayout(){
     this.setState({
       isShow:true

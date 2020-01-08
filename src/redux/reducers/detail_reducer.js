@@ -1,4 +1,5 @@
 import {SAVEHOUSE,SAVENEWHOUSE} from '../reducer-type'
+import {SAVEHOUSE} from '../action_types'
 
 let initState = { // 初始化状态
   attensionList:{},

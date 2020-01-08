@@ -15,8 +15,9 @@ export default class App extends Component{
         {/* <Header></Header> */}
         <Switch>
           <Route path="/home" component={Home}/>
-          <Route path="/detail" component={Detail}/>
+          <Route path="/detail/:id" component={Detail}/>
           <Route path="/ershoufang" component={Ershoufang}/>
+          <Route path="/detail" component={Detail}/>
           <Route path="/profile/:index" component={Profile}/>
           <Route path="/newhouse" component={NewHouse}/>
           <Redirect to="/home"/>
