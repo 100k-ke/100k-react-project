@@ -7,7 +7,13 @@ import Footer from "../../components/footer/footer";
 import { reqDetailRecommend } from "../../api/index";
 import "./detail.less";
 
-
+@connect(
+  state => ({}),
+  {
+    // action的本质是函数
+    saveAttensionHouse :createSaveAttensionHouse
+  }
+)
 class Detail extends Component {
   state = {
     navList:['商圈二手房','热门二手房','二手房','推荐小区','推荐楼盘','贝壳规则中心'],
@@ -679,10 +685,4 @@ class Detail extends Component {
   }
 }
 
-export default connect(
-  state => ({}),
-  {
-    // action的本质是函数
-    saveAttensionHouse :createSaveAttensionHouse
-  }
-)(Detail)
+export default Detail
