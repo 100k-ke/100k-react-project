@@ -7,7 +7,7 @@ export default class Header extends Component{
     return(
       <div className="headerComponent">
         {/* 头部导航栏bar */}
-        <div className="barComponent">
+        {/* <div className="barComponent">
           <div className="headerBar">
             <ul className="barLeft">
               <li>首页</li>
@@ -40,7 +40,7 @@ export default class Header extends Component{
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
         {/* login图 */}
         <div className="headComponent">
           <div className="conter">

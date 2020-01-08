@@ -9,5 +9,4 @@ export default combineReducers({
   condition:esfReducer,
   AttensionReducer,
   HomeNewHouse
-
 })
