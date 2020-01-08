@@ -46,7 +46,13 @@ export default class Home extends Component{
   getnewHouse = async()=>{
     let result = await reqnewHouse()
     const {status,datas,msg} = result
-    if(status === 1) this.setState({newHouses:datas.rent_house_list.list})
+       
+    if(status === 1) {
+      this.setState({newHouses:datas.rent_house_list.list})
+       // redux
+       this.props.saveNewHouse(this.state.newHouses)
+    }
+   
     else message.error(msg)
   }
   getoverSeas = async()=>{
