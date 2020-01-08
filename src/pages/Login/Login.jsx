@@ -5,7 +5,7 @@ import './css/Login.less'
 import {reqUsernameLogin,reqCodeLogin,reqPhoneLogin,reqUsernameRegister} from '../../api'
 
 @connect(
-  state => ({isLogin:state.userInfo.isLogin}),
+  state => ({}),
   {
     saveUserInfo:saveUserInfoAction
   }
