@@ -4,13 +4,11 @@ import Profile from './pages/Profile/Profile'
 import Ershoufang from './pages/ershoufang/ershoufang'
 import Home from './pages/home/home'
 import Detail from './pages/detail/detail'
-import Login from './pages/Login/Login'
 import Header from './components/header/header'
 import NewHouse from './pages/Newhouse/Newhouse'
 
 
-class App extends Component{
-  
+export default class App extends Component{
   render(){
     return (
       <div className="app">
@@ -28,4 +26,4 @@ class App extends Component{
     )
   }
 }
-export default App
+
