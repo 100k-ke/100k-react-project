@@ -3,13 +3,14 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './header.less'
 import Login from '../../pages/Login/Login'
+import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
   state => ({
     username:state.userInfo.username   // 从状态中取出username，用的时候：this.props.username
   }),
   {
-
+    deleteUserInfo:deleteUserInfoAction
   }
 )
 @withRouter
@@ -38,6 +39,9 @@ class Header extends Component {
       event.preventDefault()
       this.setState({isReg:true})
     }
+  }
+  logout = ()=>{
+    this.props.deleteUserInfo()
   }
   componentDidMount(){
     console.log(this);
@@ -72,7 +76,7 @@ class Header extends Component {
             <div className="login">
               <i></i>
               <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
-              <span onClick={()=>{this.logout()}}>退出</span>
+              <span onClick={this.logout}>退出</span>
             </div>
             <div className="hotPhone">
               <i></i>
