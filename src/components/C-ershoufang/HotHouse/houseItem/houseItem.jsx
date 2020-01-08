@@ -1,7 +1,9 @@
 import React,{ Component } from 'react';
+import {withRouter} from 'react-router-dom'
 import './css/houseItem.css'
 
-export default class HouseItem extends Component{
+@withRouter
+class HouseItem extends Component{
   
   render(){
     let item = this.props.item
@@ -45,3 +47,5 @@ export default class HouseItem extends Component{
     )
   }
 }
+
+export default HouseItem

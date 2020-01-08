@@ -5,12 +5,15 @@ import Nav from '../../components/C-ershoufang/nav/nav'
 import HotHouse from '../../components/C-ershoufang/HotHouse/HotHouse'
 import {reqResold} from '../../api'
 import {saveConditionAction} from '../../redux/actions/esf_action'
+import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
+import Footer from '../../components/footer/footer'
 import './css/ershoufang.css'
 
 @connect(
   state => ({}),
   {
-    saveCondition:saveConditionAction
+    saveCondition:saveConditionAction,
+    saveNewHouse:createSaveNewHouse
   }
 )
 
@@ -20,6 +23,7 @@ class ershoufang extends Component{
     console.log(list);
     if (list.status===1) {
       this.props.saveCondition(list.datas.data)
+      this.props.saveNewHouse(list.datas.data)
     }
   }
   render(){
@@ -28,6 +32,9 @@ class ershoufang extends Component{
         <Header/>
         <Nav/>
         <HotHouse/>
+        <div style={{width:'1150px',margin: '0 auto'}}>
+          <Footer/>
+        </div>
       </div>
     )
   }
