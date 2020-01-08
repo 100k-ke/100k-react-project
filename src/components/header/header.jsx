@@ -99,7 +99,7 @@ class Header extends Component {
           <div className="headerContanierRight" style={{display:this.props.username ? 'block':'none'}}>
             <div className="login">
               <i></i>
-              <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
+              <span onClick={()=>{this.props.history.push('/profile/0')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
               <span onClick={this.showModal} >{username ? '退出' : ''}</span>
               <Modal
                 title="提示"
