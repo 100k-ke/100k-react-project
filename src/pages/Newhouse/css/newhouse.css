@@ -1,0 +1,122 @@
+.newhouseContainer{
+  font-size: 12px;
+}
+.headerContainer{
+  width: 100%;
+  height:36px;
+  background: #303035;
+}
+.header{
+  width: 1150px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #9b9b9b;
+}
+.header ul{
+  display: flex;
+  margin: 0;
+}
+.header ul li{
+  margin-right: 24px;
+}
+/* 导航 */
+.mainnavContainer{
+  width: 100%;
+  background: #f5f5f6;
+  margin-bottom: 20px;
+}
+.mainnavContainer .mainnav{
+  width: 1150px;
+  margin: 0 auto;
+}
+/* 上半部分导航 */
+.mainnavContainer .mainnav .navTop{
+  width: 100%;
+  height: 61px;
+  padding:15px 0 9px;
+  display: flex;
+  box-sizing: content-box;
+}
+/* 导航最左侧样式 */
+.navTop .left{
+  display: flex;
+  margin-top: 7px;
+}
+.left img{
+  width: 138px;
+  height: 30px;
+}
+.left span{
+  background: rgb(204, 204, 204);
+  width: 1px;
+  height: 28px;
+  margin: 0 16px;
+}
+.left div{
+  width: 44px;
+  height: 26px;
+  box-sizing: content-box;
+  padding: 0 8px;
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: 2px;
+  text-align: center;
+  line-height: 26px;
+}
+.search{
+  /* width: 450px; */
+  height: 46px;
+  position: relative;
+}
+.search input{
+  padding-left: 22px;
+  width: 428px;
+  height: 46px;
+  margin: 0 20px 0 50px;
+}
+.search .searchIconContainer{
+  position: absolute;
+  width: 50px;
+  text-align: center;
+  line-height: 46px;
+  top: 0;
+  right: 20px;
+}
+.place{
+  display: flex;
+  padding-top: 15px;
+}
+.place li{
+  margin-right: 15px;
+  font-size: 12px;
+  color: #9399a5;
+}
+/* 下半部分导航 */
+.mainnav .navBottom{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+.navBottom .bottomLeft{
+  display: flex;
+  margin-bottom: 5px;
+}
+.navBottom .bottomLeft li{
+  margin-right: 35px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.navBottom .bottomLeft li.active{
+  color: #3072f6;
+  border-bottom: 2px solid #3072f6;
+}
+.navBottom .bottomRight{
+  font-weight: bold;
+  font-size: 16px;
+  color: #101d37;
+}

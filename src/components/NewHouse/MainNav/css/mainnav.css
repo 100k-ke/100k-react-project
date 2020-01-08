@@ -1,0 +1,113 @@
+.filter{
+  width: 1122px;
+  margin: 0 auto;
+  padding: 19px 26px 25px;
+  background: #fbfbfb;
+  box-sizing: content-box;
+  box-shadow: 0 2px 2px 0 #ebebeb;
+  border-radius: 1px;
+  position: relative;
+}
+.filter>.title{
+  height: 17px;
+  vertical-align: top;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #f1f1f1;
+  box-sizing: content-box;
+}
+.filter .title span{
+  margin-right: 26px;
+  font-size: 12px;
+}
+.filter .title span.select{
+  color: #3072f6;
+}
+.title .position{
+  font-weight: bold;
+}
+.filter .areaContainer{
+  width: 100%;
+  padding: 0 0 17px 50px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 17px;
+}
+.filter .areaContainer ul{
+  width: 100%;
+  display: flex;
+  height: 32px;
+  padding-top: 5px;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+.areaContainer ul li{
+  margin-right: 18px;
+  padding: 5px 0;
+  font-size: 12px;
+  color: #101d37;
+  line-height: 17px;
+}
+.choose{
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.choose>div{
+  height: 30px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.choose>.heights{
+  height: 60px;
+}
+.choose .title{
+  vertical-align: top;
+  display: inline-block;
+  font-size: 12px;
+  width: 50px;
+  height: 30px;
+  border: 0;
+  line-height: 30px;
+  font-weight: bold;
+  color: #101d37;
+}
+.choose .item{
+  width: 85%;
+  height: 30px;
+  line-height: 30px;
+}
+.item span{
+  font-size: 13px;
+  color: #101d37;
+  line-height: 17px;
+  vertical-align: middle;
+}
+.item>.ant-checkbox-group-item{
+  width: 15%;
+  margin: 0;
+  padding: 0;
+}
+.item>.ant-checkbox-group-item span{
+  margin: 0;
+  padding: 0;
+}
+.moreCondition{
+  width: 50px;
+  position: absolute;
+  top: 5px;
+  right: 50px;
+}
+.moreCondition span{
+  color: #9399a5;
+  font-size: 12px;
+  left: 50%;
+  margin-left: -5%;
+}
+.show{
+  position: absolute;
+  left: 50%;
+  transform:translateX(-50%);
+  bottom: 5px;
+  width: 60px;
+  height: 20px;
+}
