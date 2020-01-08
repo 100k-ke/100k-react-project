@@ -48,7 +48,8 @@ const menuAPP = (
 
     // 动态显示登录、注册
     isClose:true,
-    isReg:false    
+    isReg:false  
+      
   }
   // 动态显示登录、注册的方法
   showLogin = (event)=>{
@@ -170,9 +171,9 @@ const menuAPP = (
   // 点击搜索按钮==>将搜索内容保存到localStorage
   search = ()=>{
     if(this.state.searchIndex === 0){
-      this.props.history.push('/header')
+      this.props.history.push('/newhouse')
     }else if(this.state.searchIndex === 1){
-      this.props.history.push('https://bj.fang.ke.com/loupan')
+      this.props.history.push('/ershoufang')
     }
   
     // 存 ['']
