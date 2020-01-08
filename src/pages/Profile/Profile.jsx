@@ -24,40 +24,40 @@ export default class Profile extends Component{
             {/* 头部导航 */}
             <ul className="header-nav">
               <li>
-                <a href="javascript:;">二手房</a>
+                <a href="#">二手房</a>
               </li>
               <li>
-                <a href="javascript:;">新房</a>
+                <a href="#">新房</a>
               </li>
               <li>
-                <a href="javascript:;">租房</a>
+                <a href="#">租房</a>
               </li>
               <li>
-                <a href="javascript:;">海外</a>
+                <a href="#">海外</a>
               </li>
               <li>
-                <a href="javascript:;">装修</a>
+                <a href="#">装修</a>
               </li>
               <li>
-                <a href="javascript:;">商业办公</a>
+                <a href="#">商业办公</a>
               </li>
               <li>
-                <a href="javascript:;">小区</a>
+                <a href="#">小区</a>
               </li>
               <li>
-                <a href="javascript:;">百科</a>
+                <a href="#">百科</a>
               </li>
               <li>
-                <a href="javascript:;">贝壳指数</a>
+                <a href="#">贝壳指数</a>
               </li>
               <li>
-                <a href="javascript:;">发布房源</a>
+                <a href="#">发布房源</a>
               </li>
               <li>
-                <a href="javascript:;">贝壳研究院</a>
+                <a href="#">贝壳研究院</a>
               </li>
               <li>
-                <a href="javascript:;">下载app</a>
+                <a href="#">下载app</a>
               </li>
             </ul>
             {/* 下载APP */}
@@ -71,7 +71,7 @@ export default class Profile extends Component{
         <div className="logoutContainer w">
           <div className="logout">
             <span className="logout-span">17**...</span>
-            <a className="logout-a" href="javascript:;">退出</a>
+            <a className="logout-a" href="#">退出</a>
           </div>
         </div>
         {/* 主体 */}
@@ -196,7 +196,7 @@ export default class Profile extends Component{
           天津小屋信息科技有限公司 | 地址：天津经济技术开发区南港工业区综合服务区办公楼C座一层112室09单元 | 电话：10106188 <br/><br/>
           津ICP备18000836号-1 | © Copyright©2020 ke.com版权所有|
           &nbsp; 
-          <a className="ipc" href="javascript:;">ICP证</a>
+          <a className="ipc" href="#">ICP证</a>
         </div>
       </div>
     )
