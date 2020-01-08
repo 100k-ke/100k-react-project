@@ -1,0 +1,89 @@
+.navComponent{
+  width: 1150px;
+  padding: 14px 25px;
+  background-color: #fbfbfb;
+  margin: 26px auto 0;
+  font-size: 12px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .2)
+}
+.navComponent .headerBar>ul{
+  height: 27px;
+  
+}
+.navComponent .headerBar>ul>li:first-child{
+  color: black;
+  font-weight: bold;
+}
+.navComponent .headerBar>ul>li{
+  float: left;
+  margin-right: 30px;
+}
+.navComponent .arrow{
+  display: inline-block;
+  background-image: url('../../imgs/sprite.png');
+  background-position: -549px -85px;
+  width: 10px;
+  height: 5px;
+  vertical-align: 2px;
+  margin-left: 5px;
+}
+.navComponent .region{
+  margin: 18px 0;
+  padding: 5px 0 5px 50px;
+  line-height: 27px;
+  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+}
+.navComponent .region>span{
+  display: inline-block;
+  margin-right: 17px;
+}
+
+.select .title{
+  vertical-align: top;
+  display: inline-block;
+  font-size: 14px;
+  height: 30px;
+  width: 70px;
+  line-height: 30px;
+  font-weight: bold;
+  color: black;
+}
+.select .item{
+  width: 900px;
+  height: 30px;
+  line-height: 30px;
+}
+.item>.ant-checkbox-group-item{
+  width: 15%;
+  margin-right: 0;
+  color: black;
+  font-size: 12px;
+}
+.select .more{
+  float: right;
+  margin: -50px 20px 0 0;
+  font-size: 14px;
+}
+.select>div{
+  height: 30px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.select>.heights{
+  height: 60px;
+}
+.container{
+  width: 100%;
+  /* height: auto; */
+  position: relative;
+  transition: all 0.5s;
+}
+.container .show{
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 60px;
+  height: 30px;
+}
+

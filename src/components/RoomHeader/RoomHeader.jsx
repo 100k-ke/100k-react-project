@@ -17,7 +17,7 @@ export default class RoomHeader extends Component{
     }
   }
   render(){
-    const {roomCount,pathname} = this.props
+    const {roomCount} = this.props
     const {title} = this.state
     return (
       <div className="title" >
