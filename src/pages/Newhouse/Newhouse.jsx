@@ -1,12 +1,34 @@
 import React,{Component} from 'react'
-import './css/newhouse.css'
+import {connect} from 'react-redux'
 import { Input } from 'antd';
+import {reqNewHouse} from '../../api/index'
+import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
 import HotHouse from '../../components/NewHouse/HotHouse/HotHouse'
 import MainNav from '../../components/NewHouse/MainNav/MainNav'
+import './css/newhouse.css'
 
-export default class Profile extends Component{
-  
+@connect(
+  state => ({houseList:state.HomeNewHouse.newHouses}),
+  {
+    saveNewHouse:createSaveNewHouse
+  }
+)
+class NewHouse extends Component{
+  state={
+    houseList:[]
+  }
+  componentDidMount(){
+    this.getHouseList()
+  }
+  async getHouseList(){
+    let result = await reqNewHouse()
+    let houseList = result.datas.data
+    this.props.saveNewHouse(houseList)
+    this.setState({houseList})
+  }
+
   render(){
+    const {houseList} = this.state
     return (
       <div className="newhouseContainer">
         <div className="mainnavContainer">
@@ -45,8 +67,9 @@ export default class Profile extends Component{
         {/* <!-- 筛选过滤 --> */}
         <MainNav/>
         {/* 楼盘列表 */}
-        <HotHouse/>
+        <HotHouse houseList={houseList}/>
       </div>
     )
   }
 }
+export default NewHouse
