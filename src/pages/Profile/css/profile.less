@@ -1,3 +1,4 @@
+
 .profileContainer{
   width: 100%;
   height: 100%;
@@ -16,76 +17,95 @@
         background: url('../images/logo.png');
         margin: 12px 0 0 10px;
       }
+      // 头部导航
       .header-nav{
         height: 100%;
         float: left;
         margin-left: 20px;
         li{
           float: left;
-          a{
+          font-size: 16px;
+          color: #ffffff;
+          span,a{
             height: 100%;
             line-height: 55px;
             display: block;
-            margin: 0 12px;
+            margin: 0 8px;
             font-size: 16px;
             color: #ffffff;
           }
         }
-      }
-      .download{
-        width: 124px;
-        position: absolute;
-        top: 55px;
-        right: 0px;
-        z-index: 9;
-        background: #f9f9f9;
-        border-radius: 2px;
-        padding: 10px 0;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        i{
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-          border-bottom: 10px solid #fff;
-          width: 0;
-          height: 0;
-          display: block;
-          position: absolute;
-          left: 53px;
-          top: -10px;
+        //下载app
+        .downApp{
+          position: relative;
+          &:hover .download{
+            transform: scale(1);
+            transition: all 0.3s;
+          }
+          .download{
+            transform: scale(0);
+            transform-origin: top center;
+            transition: all 0.3s;
+            width: 124px;
+            position: absolute;
+            top: 55px;
+            left: 50%;
+            margin-left: -62px;
+            z-index: 9;
+            background: #f9f9f9;
+            border-radius: 2px;
+            padding: 10px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            animation: download 1s;
+            i{
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-bottom: 10px solid #fff;
+              width: 0;
+              height: 0;
+              display: block;
+              position: absolute;
+              left: 53px;
+              top: -10px;
+            }
+            .downImg{
+              width: 100px;
+              height: 100px;
+              margin: 0 auto;
+              background: url('../images/download.png') no-repeat;
+              background-size: cover;
+            }
+          }
         }
-        .downImg{
-          width: 100px;
-          height: 100px;
-          margin: 0 auto;
-          background: url('../images/download.png') no-repeat;
-          background-size: cover;
+      }
+      //退出登录
+      .logout{
+        float: right;
+        span{
+          font-size: 14px;
+          color: #ffffff;
+          line-height: 55px;
+          margin-right: 8px;
+        }
+        .logout-a{
+          font-size: 14px;
+          color: #ffffff;
+          cursor:pointer;
+          &:hover{
+            text-decoration: underline;
+          }
         }
       }
-    }
-  }
-  // 退出
-  .logoutContainer{
-    position: relative;
-    .logout{
-      width: 83px;
-      height: 56px;
-      line-height: 56px;
-      position: absolute;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      .logout-span,.logout-a{
-        font-size: 14px;
-        color: #d4cbcb;
-      }
+      
     }
   }
   // 主体
   .detailContainer{
     // height: 443px;
-    margin-top: 57px;
+    margin-top: 34px;
     display: flex;
     justify-content: space-between;
+    //左侧
     .main-left{
       width: 152px;
       height: 335px;
@@ -94,32 +114,40 @@
       box-shadow: 0 1px 2px rgba(0,0,0,0.15);
       border: 1px solid #e6e5e5;
       background: #ffffff;
+      //用户头像
       .user-avatar{
         width: 80px;
         height: 80px;
         margin: 0 auto;
         background: url('../images/snow.png') -161px 0;
       }
+      //用户名
       .user-name{
         text-align: center;
         padding: 15px 0;
         font-size: 14px;
         color: #101D37;
       }
+      //关注的信息
       .user-detail{
         li{
           height: 40px;
           text-align: center;
           line-height: 40px;
           font-size: 14px;
+          color: #555555;
+          cursor:pointer;
           &.active{
             background: #3072f6;
             color: #ffffff;
-
+          }
+          &:hover{
+            text-decoration: underline;
           }
         }
       }
     }
+    //右侧
     .main-right{
       width: 827px;
       padding: 35px;
@@ -128,6 +156,7 @@
       border: 1px solid #e6e5e5;
       background: #ffffff;
       position: relative;
+      // 标题
       .title{
         height: 29px;
         line-height: 29px;
@@ -138,12 +167,14 @@
           font-weight: bold;
         }
       }
+      //未关注的房源状态
       .room-list{
         height: 39px;
         margin-top: 20px;
         border-bottom: 1px solid #e6e6e6;
         background: #f8f8f9;
         .room-span{
+          cursor:pointer;
           display: block;
           height: 100%;
           float: left;
@@ -153,33 +184,21 @@
           color: #888888;
           &.active{
             background: #e6e6e5;
+            color: #000000;
           }
         }
       }
-      .room-detail{
-        height: 113px;
-        margin: 85px 0;
-        text-align: center;
-        .room-logo{
-          width: 62px;
-          height: 63px;
-          background: url('../images/snow.png') no-repeat -48px 0;
-          margin: 0 auto;
-        }
-        .room-text{
-          height: 30px;
-          line-height: 30px;
-          margin-top: 20px;
-          font-size: 14px;
-          color: #888888;
-        }
-      }
+      //关注的房源状态
       .roomList{
         li{
+          &:hover .delete-room{
+            display: block;
+          }
           height: 200px;
           padding-top: 30px;
           box-sizing: border-box;
           border-bottom: 1px dashed #e9e9e9;
+          position: relative;
           .roomDetail{
             margin-top: 20px;
             display: flex;
@@ -187,8 +206,12 @@
             .roomImg{
               width: 173px;
               height: 130px;
-              background: url('../images/room.jpg') no-repeat;
-              background-size: cover;
+              // background: url('../images/room.jpg') no-repeat;
+              // background-size: cover;
+              img{
+                width: 100%;
+                height: 100%;
+              }
             }
             .roomInfo{
               width: 555px;
@@ -199,8 +222,12 @@
                 padding-bottom: 12px;
                 font-size: 19px;
                 color: #009de8;
+                cursor: pointer;
                 p{
                   font-weight: bold;
+                  &:hover{
+                    text-decoration: underline;
+                  }
                 }
               }
               .roomXqing{
@@ -220,7 +247,7 @@
                   }
                 }
                 .roomType{
-                  span{
+                  span,a{
                     font-size: 14px;
                     color: #888888;
                   }
@@ -258,35 +285,50 @@
               }
             }
           }
+          // 取消关注
+          .delete-room{
+            display: none;
+            background-color: #555;
+            width: 85px;
+            height: 33px;
+            color: #fff;
+            text-align: center;
+            line-height: 33px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
         }
       }
-      .delete-room{
-        background-color: #555;
-        width: 85px;
-        height: 33px;
-        color: #fff;
-        text-align: center;
-        line-height: 33px;
-        position: absolute;
-        right: 0;
-        top: 0;
-      }
+      
+      
+      
     }
   }
   // 底部
   .footerContainer{
     height: 140px;
-    margin-top: 90px;
+    padding-top: 60px;
+    box-sizing: border-box;
     font-size: 12px;
     color: #9399a5;
     text-align: center;
     .ipc{
+      cursor: pointer;
       font-size: 12px;
       color: #0000ee;
+      &:hover{
+        text-decoration: underline;
+      }
     }
   }
-  .underline{
-    text-decoration: underline;
-  }
+}
+
+.display{
+  display: none;
 }
 
