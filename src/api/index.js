@@ -2,8 +2,11 @@ import axios from './ajax'
 
 export const reqDetailRecommend = () => axios.get('/detail/nhRecommend')
 
-//新房+租房
+//新房
 export const reqnewHouse = ()=>axios.get(`/home/newHouse`)
+
+// 租房
+export const reqrentHouse = ()=>axios.get(`/home/rentHouse`)
 
 // 海外
 export const reqoverSeas = ()=>axios.get(`/home/overseas`)
