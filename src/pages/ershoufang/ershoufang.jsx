@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
-import Header from '../../components/C-ershoufang/header/header'
 import Nav from '../../components/C-ershoufang/nav/nav'
 import HotHouse from '../../components/C-ershoufang/HotHouse/HotHouse'
+import Header from "../../components/header/header";
 import './css/ershoufang.css'
 
 

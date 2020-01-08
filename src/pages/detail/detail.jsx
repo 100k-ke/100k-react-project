@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Swiper from 'swiper';
 import { createSaveAttensionHouse } from "../../redux/actions/detailHouse_actions";
 import Footer from "../../components/footer/footer";
+import Header from "../../components/header/header";
 import { reqDetailRecommend } from "../../api/index";
 import "./detail.less";
 
@@ -41,7 +42,7 @@ class Detail extends Component {
     
     // 从路径中取出id值，根据id值在newHouseList中找到对应的数据显示
     let id = this.props.match.params.id
-    console.log(this.props.newHouseList);
+    // console.log(this.props.newHouseList);
     let newHouse = this.props.newHouseList.find((item)=>{
       return item.id == id
     })
@@ -54,7 +55,7 @@ class Detail extends Component {
 
   async getRecommend() {
     let result = await reqDetailRecommend()
-    console.log(result);
+    // console.log(result);
     if (result.status === 1) {
       this.setState({
         recommendList : result.datas.data.recommend
@@ -78,6 +79,7 @@ class Detail extends Component {
     return (
       <div>
         <div className="container">
+          <Header></Header>
           <div className="headerShow">
             <div className="showContainer">
               <header>
@@ -602,7 +604,9 @@ class Detail extends Component {
                   this.state.recommendList.map((item)=>{
                     return(
                       <li className="hqHousesItem" key={item.id}>
-                        <img src={item.picture} alt={item.desc}/>
+                        <div className="imgC">
+                          <img src={item.picture} alt={item.desc}/>
+                        </div>
                         <img className="goodHouse" style={{display : item.isGoodHouse? 'block' :'none'}} src={require('./imgs/goodhouse.png')} alt=""/>
                         <div className="highDetail">
                           <div className="houseVallige">

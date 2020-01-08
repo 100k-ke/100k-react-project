@@ -1,6 +1,7 @@
 import React,{Component} from 'react' 
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { deleteUserInfoAction } from "../../redux/actions/login_action";
 import './header.less'
 import Login from '../../pages/Login/Login'
 
@@ -9,7 +10,7 @@ import Login from '../../pages/Login/Login'
     username:state.userInfo.username   // 从状态中取出username，用的时候：this.props.username
   }),
   {
-
+    logout:deleteUserInfoAction
   }
 )
 @withRouter
@@ -38,6 +39,13 @@ class Header extends Component {
       event.preventDefault()
       this.setState({isReg:true})
     }
+  }
+  // 退出登录
+  logout(){
+    this.props.logout()
+    this.setState({
+      isClose:true
+    })
   }
   componentDidMount(){
     console.log(this);
@@ -71,7 +79,7 @@ class Header extends Component {
           <div className="headerContanierRight" style={{display:this.props.username?'block':'none'}}>
             <div className="login">
               <i></i>
-              <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
+              <span onClick={()=>{this.props.history.push('/profile/0')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
               <span onClick={()=>{this.logout()}}>退出</span>
             </div>
             <div className="hotPhone">

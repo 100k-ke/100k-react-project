@@ -5,6 +5,7 @@ import {reqNewHouse} from '../../api/index'
 import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
 import HotHouse from '../../components/NewHouse/HotHouse/HotHouse'
 import MainNav from '../../components/NewHouse/MainNav/MainNav'
+import Header from "../../components/header/header";
 import './css/newhouse.css'
 
 @connect(
@@ -31,6 +32,7 @@ class NewHouse extends Component{
     const {houseList} = this.state
     return (
       <div className="newhouseContainer">
+        <Header></Header>
         <div className="mainnavContainer">
           <div className="mainnav">
             <div className="navTop">
