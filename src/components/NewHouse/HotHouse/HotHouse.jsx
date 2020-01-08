@@ -1,23 +1,30 @@
 import React,{Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import { Checkbox } from 'antd';
 import {reqNewHouse} from '../../../api/index'
+import {saveHouseListAction} from '../../../redux/actions/newhouse_action'
 import './css/hothouse.css'
-
-export default class MyComponent extends Component{
-  state={
-    houseList:[]
+@connect(
+  state => ({houseList:state.houseList.houseList}),
+  {
+    saveHouseList:saveHouseListAction
   }
+)
+@withRouter
+class Hothouse extends Component{
   componentDidMount(){
     this.getHouseList()
+    console.log(this)
   }
   async getHouseList(){
     let result = await reqNewHouse()
-    console.log(result)
-    // let houseList = result.datas.
-    // this.setState({houseList:result})
+    let houseList = result.datas.data
+    this.props.saveHouseList(houseList)
   }
   render(){
     const filters = ['在售','住宅','VR看房','优惠楼盘','近期开盘']
+    const {houseList} = this.props
     return (
       <div className="houseList">
         {/* 左侧楼盘列表 */}
@@ -33,47 +40,50 @@ export default class MyComponent extends Component{
           </div>
           <div className="houseResult">
             <span className="found">
-              为您找到439个北京楼盘
+              为您找到{houseList.length}个北京楼盘
             </span>
             <span className="clear"><i>c </i> 清空条件</span>
           </div>
           {/* 左侧各个楼盘详情 */}
           <div className="houseContainer">
             <ul>
-              <li>
-                <div className="houseImg">
-                </div>
-                <div className="houseDetail">
-                  <div className="houseName">
-                    <span className="name">北京岭秀</span>
-                    <span className="sale">在售</span>
-                    <span className="size">别墅</span>
-                  </div>
-                  <div className="position">
-                    <i>p </i>
-                    <span> 平谷/平谷其它/环山路与主环路交叉口东南(南一路)</span>
-                  </div>
-                  <div className="houseType">
-                    <i>h </i>
-                    <span className="type">户型:3室</span>
-                    <span className="buildArea"> 建面 223-260㎡</span>
-                  </div>
-                  <div className="advantage">
-                    <span>品牌房企</span>
-                    <span>环线房</span>
-                    <span>现房</span>
-                    <span>车位充足</span>
-                  </div>
-                  <div className="totalPrice">
-                    <div>
-                      <span>428</span>
-                      <span>万/套(总价)</span>
+              {
+                houseList.map((house,index)=>
+                  <li key={index} onClick={()=>{this.props.history.push(`/detail/${house.id}`)}}>
+                    <div className="houseImg" style={{backgroundImage:`url(${house.cover_size_pic})`}}>
                     </div>
-                    <span>总价419万/套</span>
-                  </div>
-                  <div className="attention">关注</div>
-                </div>
-              </li>
+                    <div className="houseDetail">
+                      <div className="houseName">
+                        <span className="name">{house.build_name}</span>
+                        <span className="sale">{house.sale_status}</span>
+                        <span className="size">{house.house_type}</span>
+                      </div>
+                      <div className="position">
+                        <i>p </i>
+                        <span>{house.store_addr}</span>
+                      </div>
+                      <div className="houseType">
+                        <i>h </i>
+                        <span className="type">户型:{house.frame_rooms_desc}</span>
+                        <span className="buildArea">{house.resblock_frame_area}</span>
+                      </div>
+                      <div className="advantage">
+                        {house.project_tags.map((project,index)=>
+                          <span key={index}>{project.desc}</span>
+                        )}
+                      </div>
+                      <div className="totalPrice">
+                        <div>
+                          <span>{house.lowest_total_price}</span>
+                          <span>万/套(总价)</span>
+                        </div>
+                        <span>总价{house.lowest_total_price}万/套</span>
+                      </div>
+                      <div className="attention">关注</div>
+                    </div>
+                  </li>
+                )
+              }
             </ul>
           </div>
         </div>
@@ -85,20 +95,24 @@ export default class MyComponent extends Component{
           <div className="hotHouse">
             <div className="title">热门楼盘</div>
             <ul>
-              <li>
-                <div className="hotImg"></div>
-                <div className="hotHouseDetail">
-                  <span>北京岭秀</span>
-                  <div className="hotHouseCate">
-                    <span className="sale">在售</span>
-                    <span className="size">别墅</span>
-                  </div>
-                </div>
-                <div className="priceWrapper">
-                  <span>428</span>
-                  <span>万/套</span>
-                </div>
-              </li>
+              {
+                houseList.map((house,index)=>
+                  <li key={index}>
+                    <div className="hotImg" style={{backgroundImage:`url(${house.cover_size_pic})`}}></div>
+                    <div className="hotHouseDetail">
+                      <span>{house.build_name}</span>
+                      <div className="hotHouseCate">
+                        <span className="sale">{house.sale_status}</span>
+                        <span className="size">{house.house_type}</span>
+                      </div>
+                    </div>
+                    <div className="priceWrapper">
+                      <span>{house.lowest_total_price}</span>
+                      <span>万/套</span>
+                    </div>
+                  </li>
+                )
+              }
             </ul>
           </div>
         </div>
@@ -106,3 +120,4 @@ export default class MyComponent extends Component{
     )
   }
 }
+export default Hothouse
