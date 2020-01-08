@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import { Pagination,Row, Col  } from 'antd';
 import {connect} from 'react-redux'
 import Swiper from 'swiper';
-import { createSaveAttensionHouse } from "../../redux/actions/detailHouse_actions";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import { reqDetailRecommend } from "../../api/index";
@@ -12,10 +11,7 @@ import "./detail.less";
   state => ({
     newHouseList:state.HomeNewHouse.data
   }),
-  {
-    // action的本质是函数
-    saveAttensionHouse :createSaveAttensionHouse
-  }
+  {}
 )
 class Detail extends Component {
   state = {
@@ -23,7 +19,8 @@ class Detail extends Component {
     recommendList:[],
     isShow:false,  // 鼠标落到户型小图上时出现遮罩
     isOpen:false,  // 控制户型大图显示隐藏
-    houseInfo:[]  // 保存房屋详情信息
+    houseInfo:[],  // 保存房屋详情信息
+    id:''
   }
   componentDidMount(){
     // 缩略图
@@ -43,6 +40,9 @@ class Detail extends Component {
     // 从路径中取出id值，根据id值在newHouseList中找到对应的数据显示
     let id = this.props.match.params.id
     // console.log(this.props.newHouseList);
+    this.setState({
+      id
+    })
     let newHouse = this.props.newHouseList.find((item)=>{
       return item.id == id
     })
@@ -69,9 +69,11 @@ class Detail extends Component {
       isShow:true
     })
   }
-  // 点击关注房源，将房源的信息，存入到redux
+  // 点击关注房源，将房源的信息的id存到本地，便于个人中心页去查找数据
   attentionHouse(){
-    this.props.saveAttensionHouse('1')
+    let houseArr = JSON.parse(localStorage.getItem('roomId')) || []
+    houseArr.unshift(this.state.id)
+    localStorage.setItem('roomId',JSON.stringify(houseArr))
   }
 
   render (){
