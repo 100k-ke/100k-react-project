@@ -5,8 +5,9 @@ import {Link} from 'react-router-dom'
 import './css/profile.less'
 import RoomHeader from '../../components/RoomHeader/RoomHeader'
 import RoomContent from '../../components/RoomContent/RoomContent'
-import datas from '../../datas/roomDetail.json'
+// import datas from '../../datas/roomDetail.json'
 import {deleteUserInfoAction} from '../../redux/actions/login_action'
+import {reqRoomDetail} from '../../api'
 
 @connect(
   state => ({username:state.userInfo.username}),
@@ -22,7 +23,7 @@ class Profile extends Component{
     pathname:'',      //获取当前的路径
     cancel:false,     //是否取消关注
     visible: false,   //是否展示提示框
-    roomDetail:datas.data.list   //关注房子的对象
+    roomDetail:[]  //关注房子的对象
   }
   //展示提示框
   showModal = () => {
@@ -89,8 +90,22 @@ class Profile extends Component{
       roomCount:newRoom.length   //更新关注房子的数量
     })
   }
+
+  getRoomDetail = async () => {
+    let data = JSON.parse(localStorage.getItem('roomId'))
+    const result = await reqRoomDetail(data)
+    let {datas,status} = result
+    if (status === 1) {
+      this.setState({roomDetail:datas})
+    }else{
+      this.setState({roomDetail:datas})
+    }
+  }
+
   // 挂载
   componentDidMount(){
+    //获取房源的详情
+    this.getRoomDetail()
     // 获取ul
     let ul = this.refs.roomlist
     // 获取li的列表
@@ -102,6 +117,8 @@ class Profile extends Component{
     //更新菜单样式
     let index = this.props.match.params.index
     this.changeActive2(index * 1)
+
+    
   }
   render(){
     // 模拟头部数据

@@ -37,3 +37,6 @@ export const reqResold = () => ajax.get('/resold')
 
 //发送房源信息的请求
 export const reqNewHouse = () => ajax.get('/newHouse/newHouseRec')
+
+//发送请求房源详情
+export const reqRoomDetail = (data) => ajax.get('/roomdetail',{params:{data}})
