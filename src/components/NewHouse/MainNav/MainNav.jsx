@@ -119,7 +119,8 @@ export default class MyComponent extends Component{
                 <Checkbox.Group ref={'value'+index} className="item" options={addressItem.listArr} defaultValue={['']} onChange={(value)=>{this.onChange(index,value)}}/><br/>
                 {addressItem.listArr.length>6?<div className="moreCondition" ref={'more'+index} onClick={()=>{this.heightVariety(index)}}><span>更多选项</span></div>:''}
               </div>
-            </div>)
+            </div>
+          )
           }
           <span className="show"  onClick={()=>{this.heightShow()}}>{this.state.isShow?'更多条件':"收起选项"}</span>
       </div>
