@@ -1,7 +1,6 @@
 import {SAVEUSER,DELETEUSER} from '../action_types'
 let user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'))
-let token = JSON.parse(localStorage.getItem('token') || sessionStorage.getItem('token'))
-console.log(user);
+let token = localStorage.getItem('token')
 let initState = {
   username: user || '',
   token: token || '',
@@ -10,10 +9,11 @@ let initState = {
 
 export default function operaState(preState = initState,action) {
   const {type,data} = action
+  console.log(type,data)
   let newState
   switch (type) {
     case SAVEUSER:
-      newState = {username:data.username || data.phone,token:data.token,isLogin:true}
+      newState = {username:data.users.username || data.users.phone,token:data.users.token,isLogin:true}
       return newState
     case DELETEUSER:
       newState = {username:'',token:'',isLogin:false}
