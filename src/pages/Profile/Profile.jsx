@@ -91,7 +91,6 @@ class Profile extends Component{
   }
   // 挂载
   componentDidMount(){
-    let {roomDetail} = this.state
     // 获取ul
     let ul = this.refs.roomlist
     // 获取li的列表
