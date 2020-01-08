@@ -11,3 +11,6 @@ export const reqPhoneLogin = ({phone,code}) => ajax.post('/loginSms',{phone,code
 
 // 自动登录
 export const reqAutoLogin = (token) => ajax.get('/auto_login',{params:{token}})
+
+// 注册
+export const reqUsernameRegister = (username, password) => ajax.post('/register',{username, password})
