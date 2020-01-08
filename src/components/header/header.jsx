@@ -3,15 +3,13 @@ import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './header.less'
 import Login from '../../pages/Login/Login'
-import { deleteUserInfoAction } from "../../redux/actions/login_action";
 
 @connect(
   state => ({
-    username:state.userInfo.username,   // 从状态中取出username，用的时候：this.props.username
-    isLogin:state.userInfo.isLogin
+    username:state.userInfo.username   // 从状态中取出username，用的时候：this.props.username
   }),
   {
-    logout:deleteUserInfoAction
+
   }
 )
 @withRouter
@@ -41,17 +39,13 @@ class Header extends Component {
       this.setState({isReg:true})
     }
   }
-  
-  logout(){
-    this.props.logout()
-    this.setState({
-      isClose: true,  
-    })
+  componentDidMount(){
+    console.log(this);
   }
   render (){
     const {isClose,isReg} = this.state
     return(
-      <div className="topHeader" style={{display : this.props.location.pathname !== ('/home' || '/profile') ? 'block' :'none'}}>
+      <div className="topHeader" style={{display : this.props.location.pathname === '/home' ? 'none' :'block'}}>
         {
           isClose ? '' : <Login isShow={this.showLogin}/>
         }
@@ -60,9 +54,9 @@ class Header extends Component {
         }
         <div className="headerContanier">
           <ul className="headerContanierLeft">
-            <li>首页</li>
-            <li>二手房</li>
-            <li>新房</li>
+            <li onClick={()=>{this.props.history.push('/home')}}>首页</li>
+            <li onClick={()=>{this.props.history.push('/ershoufang')}}>二手房</li>
+            <li onClick={()=>{this.props.history.push('/newHouse')}}>新房</li>
             <li>租房</li>
             <li>海外</li>
             <li>装修</li>
@@ -74,10 +68,10 @@ class Header extends Component {
             <li>贝壳研究院</li>
             <li>下载App</li>
           </ul>
-          <div className="headerContanierRight" style={{display:this.props.isLogin?'block':'none'}}>
+          <div className="headerContanierRight" style={{display:this.props.username?'block':'none'}}>
             <div className="login">
               <i></i>
-              <span>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
+              <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
               <span onClick={()=>{this.logout()}}>退出</span>
             </div>
             <div className="hotPhone">
@@ -86,7 +80,7 @@ class Header extends Component {
               <span>010-8888886</span>
             </div>
           </div>
-          <div className="headerContanierRight1" style={{display:this.props.isLogin?'none':'block'}}>
+          <div className="headerContanierRight1" style={{display:this.props.username?'none':'block'}}>
             <span onClick={this.showLogin}>登录</span>
             <span onClick={this.showReg}> / 注册</span>
           </div>

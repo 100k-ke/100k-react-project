@@ -531,7 +531,7 @@ const menuAPP = (
                  {
                    newHouses.map((newHouse,index)=>{
                      return(
-                      <li className='clickHouse' key={index}>
+                      <li className='clickHouse' key={index}  onClick={()=>{this.props.history.push(`/detail/${newHouse.id}`)}}>
                         <a className='wrap' title={newHouse.build_name}>
                           <img className='b' src={newHouse.cover_size_pic} alt=""/>
                           <div className='bg'></div>

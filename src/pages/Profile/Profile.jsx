@@ -218,7 +218,7 @@ class Profile extends Component{
                           </div>
                           <div className="roomXqing">
                             <div className="roomMap">
-                              <span>{room.communityName}</span>
+                              <span>{room.community}</span>
                               <span>{room.roomNum}</span>
                               <span className="line">|</span>
                               <span>{room.square}平米</span>
@@ -235,10 +235,10 @@ class Profile extends Component{
                           </div>
                           <div className="roomPrice">
                             <div className="price">
-                              <span className="cum">{room.new_price_str}</span>
+                              <span className="cum">{room.price}</span>
                               {room.new_price_str_unit}
                             </div>
-                            <div className="price-pre">{room.new_unit_price_str} 元/m²</div>
+                            <div className="price-pre">{room.unitPrice} 元/m²</div>
                           </div>
                         </div>
                       </div>
