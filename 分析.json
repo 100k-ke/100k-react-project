@@ -1,0 +1,130 @@
+{
+  "pid": "27107",
+  "city_id": "110000",
+  "bizcircle_id": "611100710",
+  "bizcircle_name": "城子",
+  "build_name": "中骏西山天璟",
+  "build_id": "1115212796718278",
+  "open_time": "2018-06-28",
+  "build_type": "107500000004",
+  "store_addr": "北京市门头沟区西山永定楼北300米",
+  "store_tel": "01069866666",
+  "decorate_type": "2",
+  "price": "63000",
+  "status": "2",
+  "process_status": "3",
+  "discount_realpay": "0",
+  "discount_value": "0",
+  "discount_type": "0",
+  "is_cooperation": "2",
+  "is_exclusive": "0",
+  "allowance": "0",
+  "allowance_comm": "",
+  "project_name": "zjxstjabocp",
+  "tags": [
+  "品牌房企",
+  "环线房",
+  "大型社区",
+  "娱乐丰富"
+  ],
+  "display_video_intro": "0",
+  "special_tag": "",
+  "district_id": "23008620",
+  "district_name": "门头沟",
+  "total_price_max": "0",
+  "total_price_min": "898",
+  "discount_info": "[]",
+  "avg_price_max": "65000",
+  "price_show_config": "1",
+  "permit_all_ready": "1",
+  "price_confirm_time": "2019-04-01 17:01:28",
+  "outlet_center_tel": "",
+  "sale_status": "在售",
+  "house_type": "别墅",用途
+  "house_type_value": "107500000004",
+  "video_intro": [],
+  "decoration": "毛坯",装修
+  "id": "1115212796718278",
+  "city_name": "北京市",
+  "resblock_name": "中骏西山天璟",
+  "resblock_alias": "西山天璟家园",
+  "full_spell": "zhongjunxishantianjing",
+  "resblock_desc": "项目位于西山脚下永定河畔，三面环山一面临水，距离永定河公园仅150米。项目周边“三山两寺一阁一河”即灵山、百花山、妙峰山、潭柘寺、戒台寺、定都阁以及永定河与“三山五园”一脉相承，中骏西山天璟毗邻的正是永定河水量最丰沛的一段，河道宽约300米。\n门城区域山地占98.5%，林木绿化率高达68%，城市公园40多个，最难得的是我们项目800米范围内十个市政公园环抱。本区域四横四纵一轻轨的立体交通路网\n四纵为：滨河路、西五环、西四环、西三环；\n四横为：阜石路全程无红绿灯，是门城通往主城区第一交通动脉\n另有长安街西延线、莲石路\n再有杏石口路将改造成西外大街西延快速路，全长6.8Km从西直门直通西五环杏石口桥。\n一轻轨：S1号线与1号线、6号线苹果园站无缝对接。 \n项目出发两个红绿灯便可上阜石路，畅达海淀成熟的医疗、教育、商业、金融等配套；步行范围之内：项目南侧400米的就是门头沟区医院，是一家二甲医院，黑山公园附近还有一家三级甲等京煤集团总医院。商业方面，雨润发超市、双峪环岛的物美大卖场，都能满足日常生活所需。项目南侧500米在建17万方商业，加上项目自建5万方商业，区域内形成22万方的规模商圈。",
+  "building_count": "4",
+  "house_amount": "104",
+  "total_area": "251,281",
+  "site_area": "71,794",
+  "virescence_rate": "30.00",
+  "virescence_area": "21,538.30",
+  "cubage_rate": "2.20",
+  "address_remark": "永定楼北300米",
+  "administrative_address": "永定楼北300米",
+  "address_desc": "永定楼北300米",
+  "checkin_start_date": null,
+  "part_num": "11",
+  "property_address": "永定楼北300米",
+  "overground_car_num": "0",
+  "underground_car_num": "2416",
+  "carRatio": "1:1.2",
+  "longitude": "116.116969",
+  "latitude": "39.942773",
+  "project_tags": [
+  {
+  "id": "13",
+  "desc": "品牌房企",
+  "color": ""
+  },
+  {
+  "id": "23",
+  "desc": "环线房",
+  "color": ""
+  },
+  {
+  "id": "21",
+  "desc": "大型社区",
+  "color": ""
+  },
+  {
+  "id": "6",
+  "desc": "娱乐丰富",
+  "color": ""
+  }
+  ],
+  "special": {
+  "lianjia_special": [],
+  "lianjia_special_comm": "",
+  "developer_special": [],
+  "developer_special_comm": ""
+  },
+  "special_tags": [],
+  "cover_pic": "https://image1.ljcdn.com/hdic-resblock/16e82758-1524-4f1b-8276-7f734251240b.jpg",
+  "cover_size_pic": "https://image1.ljcdn.com/hdic-resblock/16e82758-1524-4f1b-8276-7f734251240b.jpg!m_fill,w_280,h_210,l_fbk",
+  "show_price": "63000",
+  "show_price_unit": "元/平",
+  "show_price_desc": "均价",
+  "average_price": "63000", 单价
+  "total_price": "8980000", 总价
+  "lowest_total_price": 898,
+  "show_price_confirm_time": "280天",
+  "min_frame_area": "140",面积最小
+  "max_frame_area": "220",面积最大
+  "min_frame_inside_area": "0",
+  "max_frame_inside_area": "0",
+  "resblock_frame_area": "建面 140-220㎡",面积
+  "evaluate_status": "0",
+  "evaluate": [],
+  "frame_rooms": [],
+  "has_virtual_view": "0",VR
+  "project_desc": "门头沟永定楼旁叠拼别墅",
+  "sale_status_color": "5F94FF",
+  "house_type_color": "8FD24E",
+  "scheme": "lianjiabeike://newhouse/detail?project_name=zjxstjabocp",
+  "m_detail_url": "https://m.ke.com/bj/loupan/p_zjxstjabocp/",
+  "pc_detail_url": "http://bj.fang.ke.com/loupan/p_zjxstjabocp/",
+  "frame_rooms_desc": "4居",房型
+  "prod": "1",
+  "rooms": "",
+  "address": "永定楼北300米",
+  "view_url": "http://bj.fang.ke.com/loupan/p_zjxstjabocp/",
+  "fb_expo_id": "r15783162988812422719664234000"
+  },

@@ -11,3 +11,8 @@ export const reqPhoneLogin = ({phone,code}) => ajax.post('/loginSms',{phone,code
 
 // 自动登录
 export const reqAutoLogin = (token) => ajax.get('/auto_login',{params:{token}})
+
+// 二手房数据
+export const reqResold = () => ajax.get('/resold')
+//发送房源信息的请求
+export const reqNewHouse = () => ajax.get('/home/newHouse')
