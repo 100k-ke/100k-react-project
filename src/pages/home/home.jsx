@@ -88,9 +88,10 @@ const menuAPP = (
       this.setState({newHouses:datas.data})
       // redux
       this.props.saveNewHouse(this.state.newHouses)
-    }  
-    else message.error(msg)
+    }else message.error(msg)  
   }
+    
+  // }
   getoverSeas = async()=>{
     let result = await reqoverSeas()
     const {status,datas,msg} = result
@@ -212,7 +213,7 @@ const menuAPP = (
 
   render(){
     // let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists} = this.state
-    let {isShow,currentIndex,searchIndex,newHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists,isClose,isReg} = this.state
+    let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists,isClose,isReg} = this.state
     console.log(inputLists)
     // let {leftLists} = this
     // header的搜索与切换
@@ -742,7 +743,7 @@ const menuAPP = (
       </div>
     )
   }
-}
+ }
 
 export default connect(
   state => ({}),
