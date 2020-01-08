@@ -9,7 +9,7 @@ import datas from '../../datas/roomDetail.json'
 import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
-  state => ({}),
+  state => ({isLogin:state.userInfo.isLogin}),
   {
     deleteUserInfo:deleteUserInfoAction
   }
@@ -113,6 +113,7 @@ class Profile extends Component{
     //正则*号代替手机号
     let reg=/(\d{2})\d{7}(\d{2})/;                          
     username = username.replace(reg, "$1****$2")
+    
     return (
       <div className="profileContainer">
         {/* 头部 */}
