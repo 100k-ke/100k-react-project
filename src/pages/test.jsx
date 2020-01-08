@@ -19,7 +19,6 @@ export default class MyComponent extends Component{
     }else{
       this.setState({isReg:true})
     }
-    
   }
   render(){
     const {isClose,isReg} = this.state

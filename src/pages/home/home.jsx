@@ -4,6 +4,7 @@ import {reqnewHouse,reqoverSeas,reqsecondHand,reqxiaoQu,reqrentHouse} from '../.
 import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
 import {connect} from 'react-redux'
 import './css/home.less'
+import Login from '../Login/Login'
 
 
 const menuYeZhu = (
@@ -42,7 +43,32 @@ const menuAPP = (
     overSeas:[],
     secHouses:[],
     xiaoQus:[] ,
-    rentHouses:[]   
+    rentHouses:[], 
+
+
+    // 动态显示登录、注册
+    isClose:true,
+    isReg:false    
+  }
+  // 动态显示登录、注册的方法
+  showLogin = (event)=>{
+    console.log('aaa');
+    if (event === true) {
+      console.log('111');
+      this.setState({isClose: event})
+    }else{
+      event.preventDefault()
+      console.log('222');
+      this.setState({isClose: false})
+    }
+  }
+  showReg = (event)=>{
+    if (event === false) {
+      this.setState({isReg:false})
+    }else{
+      event.preventDefault()
+      this.setState({isReg:true})
+    }
   }
   // 发请求
   getrentHouse = async()=>{
@@ -99,6 +125,7 @@ const menuAPP = (
     this.setState({
       inputLists:res.concat(inputLists)
     })
+    console.log(this)
   }
 
   // 广告的关闭按钮
@@ -184,7 +211,8 @@ const menuAPP = (
   }
 
   render(){
-    let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists} = this.state
+    // let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists} = this.state
+    let {isShow,currentIndex,searchIndex,newHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists,isClose,isReg} = this.state
     console.log(inputLists)
     // let {leftLists} = this
     // header的搜索与切换
@@ -227,6 +255,12 @@ const menuAPP = (
     return (
       <div className='beike'>
         {/* header */}
+        {
+          isClose ? '' : <Login isShow={this.showLogin}/>
+        }
+        {
+          isReg ? <Login isShowReg={this.showReg}/> : ''
+        }
         <div className='header'>
           <div className="wrapper ">
                {/* 头部导航 */}
@@ -289,11 +323,11 @@ const menuAPP = (
                   <div className='typeShowUser'>
                     <i></i>
                     <span className='welcome'>
-                      <a href=""  className='btn-login'>
+                      <a href=""  className='btn-login' onClick={this.showLogin}>
                         <span className='reg'>登录</span>
                       </a>
                       <span>&nbsp;/&nbsp;</span>
-                      <a href="" className='btn-register'>
+                      <a href="" className='btn-register' onClick={this.showReg}>
                         <span className='log'>注册</span>
                       </a>
                     </span>

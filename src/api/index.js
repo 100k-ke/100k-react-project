@@ -36,4 +36,4 @@ export const reqUsernameRegister = (username, password) => axios.post('/register
 export const reqResold = () => axios.get('/resold')
 
 //发送房源信息的请求
-export const reqNewHouse = () => axios.get('/home/newHouse')
+export const reqNewHouse = () => axios.get('/newHouse/newHouseRec')

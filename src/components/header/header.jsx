@@ -1,13 +1,57 @@
 import React,{Component} from 'react' 
 import {withRouter} from 'react-router-dom'
-
+import {connect} from 'react-redux'
 import './header.less'
+import Login from '../../pages/Login/Login'
 
+@connect(
+  state => ({
+    username:state.userInfo.username   // 从状态中取出username，用的时候：this.props.username
+  }),
+  {
+
+  }
+)
 @withRouter
 class Header extends Component {
+  state = {
+    // 动态显示登录、注册
+    isClose:true,
+    isReg:false 
+  }
+  // 动态显示登录、注册的方法
+  showLogin = (event)=>{
+    console.log('aaa');
+    if (event === true) {
+      console.log('111');
+      this.setState({isClose: event})
+    }else{
+      event.preventDefault()
+      console.log('222');
+      this.setState({isClose: false})
+    }
+  }
+  showReg = (event)=>{
+    if (event === false) {
+      this.setState({isReg:false})
+    }else{
+      event.preventDefault()
+      this.setState({isReg:true})
+    }
+  }
+  componentDidMount(){
+    console.log(this);
+  }
   render (){
+    const {isClose,isReg} = this.state
     return(
-      <div className="topHeader">
+      <div className="topHeader" style={{display : this.props.location.pathname === '/home' ? 'none' :'block'}}>
+        {
+          isClose ? '' : <Login isShow={this.showLogin}/>
+        }
+        {
+          isReg ? <Login isShowReg={this.showReg}/> : ''
+        }
         <div className="headerContanier">
           <ul className="headerContanierLeft">
             <li>首页</li>
@@ -24,10 +68,10 @@ class Header extends Component {
             <li>贝壳研究院</li>
             <li>下载App</li>
           </ul>
-          <div className="headerContanierRight">
+          <div className="headerContanierRight" style={{display:this.props.username?'block':'none'}}>
             <div className="login">
               <i></i>
-              <span>181****8263</span>
+              <span>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
               <span>退出</span>
             </div>
             <div className="hotPhone">
@@ -35,6 +79,10 @@ class Header extends Component {
               <span className="phone">热线电话</span>
               <span>010-8888886</span>
             </div>
+          </div>
+          <div className="headerContanierRight1" style={{display:this.props.username?'none':'block'}}>
+            <span onClick={this.showLogin}>登录</span>
+            <span onClick={this.showReg}> / 注册</span>
           </div>
         </div>
       </div>

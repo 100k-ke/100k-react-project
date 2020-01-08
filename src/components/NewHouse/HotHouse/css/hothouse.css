@@ -163,6 +163,7 @@ li .houseDetail{
 }
 li .attention{
   position: absolute;
+  display: none;
   width: 25px;
   top: 0;
   right: 0;
