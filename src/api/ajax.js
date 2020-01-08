@@ -11,7 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config)=>{
     const {method,data} = config
-    const {token} = store.getState().userInfo
+    const {token} = store.getState().userInfo 
     if (token) config.headers.Authorization = token
     if (method.toLowerCase() === 'post') {
       if (data instanceof Object) {

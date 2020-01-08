@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {Link} from 'react-router-dom'
 import { Menu ,Dropdown,message} from 'antd';
 import {reqnewHouse,reqoverSeas,reqsecondHand,reqxiaoQu,reqrentHouse} from '../../api/index'
 import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
@@ -48,7 +49,8 @@ const menuAPP = (
 
     // 动态显示登录、注册
     isClose:true,
-    isReg:false    
+    isReg:false  
+      
   }
   // 动态显示登录、注册的方法
   showLogin = (event)=>{
@@ -110,6 +112,9 @@ const menuAPP = (
     if(status === 1) this.setState({xiaoQus:datas})
     else message.error(msg)
   }
+  toProfile = () => {
+    this.props.history.push('/profile/0')
+  }
 
   componentDidMount(){
     this.getnewHouse()
@@ -170,9 +175,9 @@ const menuAPP = (
   // 点击搜索按钮==>将搜索内容保存到localStorage
   search = ()=>{
     if(this.state.searchIndex === 0){
-      this.props.history.push('/header')
+      this.props.history.push('/newhouse')
     }else if(this.state.searchIndex === 1){
-      this.props.history.push('https://bj.fang.ke.com/loupan')
+      this.props.history.push('/ershoufang')
     }
   
     // 存 ['']
@@ -212,6 +217,7 @@ const menuAPP = (
   }
 
   render(){
+    let {username} = this.props
     // let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists} = this.state
     let {isShow,currentIndex,searchIndex,newHouses,rentHouses,overSeas,secHouses,xiaoQus,inputLists,leftLists,isClose,isReg} = this.state
     console.log(inputLists)
@@ -276,10 +282,14 @@ const menuAPP = (
               <div className='nav'>
                 <ul>
                   <li className='clickData'>
-                    <div className='top'>二手房</div>
+                    <Link to="/ershoufang">
+                      <div className='top'>二手房</div>
+                    </Link>
                   </li>
                   <li className='clickData'>
-                    <div className='top'>新房</div>
+                    <Link to="/newhouse">
+                      <div className='top'>新房</div>
+                    </Link>
                   </li>
                   <li className='clickData'>
                     <div className='top'>租房</div>
@@ -323,13 +333,16 @@ const menuAPP = (
                 <div className='ti-hover'>
                   <div className='typeShowUser'>
                     <i></i>
+                    {/* 登录 */}
                     <span className='welcome'>
-                      <a href=""  className='btn-login' onClick={this.showLogin}>
-                        <span className='reg'>登录</span>
+                      <a href=""  className='btn-login' onClick={username ? this.toProfile : this.showLogin}>
+                        <span className='reg'>{username ? username : '登录'}</span>
                       </a>
-                      <span>&nbsp;/&nbsp;</span>
+                      {
+                        username ? '' : <span >&nbsp;/&nbsp;</span>
+                      }
                       <a href="" className='btn-register' onClick={this.showReg}>
-                        <span className='log'>注册</span>
+                        <span className='log'>{username ? '' : '注册'}</span>
                       </a>
                     </span>
                   </div>
@@ -746,7 +759,7 @@ const menuAPP = (
  }
 
 export default connect(
-  state => ({}),
+  state => ({username:state.userInfo.username}),
   {
     saveNewHouse:createSaveNewHouse,
   }

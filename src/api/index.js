@@ -27,7 +27,7 @@ export const reqCodeLogin = (phone) => axios.get('/reqCode',{params:{phone}})
 export const reqPhoneLogin = ({phone,code}) => axios.post('/loginSms',{phone,code})
 
 // 自动登录
-export const reqAutoLogin = (token) => axios.get('/auto_login',{params:{token}})
+export const reqAutoLogin = (username) => axios.post('/auto_login',{username})
 
 // 注册
 export const reqUsernameRegister = (username, password) => axios.post('/register',{username, password})

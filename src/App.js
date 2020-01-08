@@ -7,17 +7,11 @@ import Detail from './pages/detail/detail'
 import Header from './components/header/header'
 import NewHouse from './pages/Newhouse/Newhouse'
 import {reqAutoLogin} from './api'
+import {saveUserInfoAction} from './redux/actions/login_action'
 
 
 export default class App extends Component{
-  componentDidMount(){
-    let token = localStorage.getItem('token') || sessionStorage.getItem('token')
-    this.autoLogin(token)
-  }
-  autoLogin = async (token)=>{
-    let result = await reqAutoLogin()
-    console.log(result)
-  }
+  
   render(){
     return (
       <div className="app">
