@@ -9,21 +9,6 @@ export default class Profile extends Component{
   render(){
     return (
       <div className="newhouseContainer">
-        <div className="headerContainer">
-          <div className="header">
-            <ul>
-              <li>首页</li>
-              <li>二手房</li>
-              <li>新房</li>
-              <li>租房</li>
-              <li>海外</li>
-              <li>装修</li>
-              <li>小区</li>
-              <li>百科</li>
-            </ul>
-            <div>登录/注册</div>
-          </div>
-        </div>
         <div className="mainnavContainer">
           <div className="mainnav">
             <div className="navTop">

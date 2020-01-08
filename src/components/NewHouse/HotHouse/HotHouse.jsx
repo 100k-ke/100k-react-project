@@ -97,7 +97,7 @@ class Hothouse extends Component{
             <ul>
               {
                 houseList.map((house,index)=>
-                  <li key={index}>
+                  <li key={index} onClick={()=>{this.props.history.push(`/detail/${house.id}`)}}>
                     <div className="hotImg" style={{backgroundImage:`url(${house.cover_size_pic})`}}></div>
                     <div className="hotHouseDetail">
                       <span>{house.build_name}</span>
