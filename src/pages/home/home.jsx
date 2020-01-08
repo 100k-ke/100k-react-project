@@ -76,9 +76,8 @@ const menuAPP = (
     if(status === 1) {
       this.setState({newHouses:datas.rent_house_list.list})
        // redux
-       this.props.saveNewHouse(this.state.newHouses)
+      this.props.saveNewHouse(this.state.newHouses)
     }
-   
     else message.error(msg)
   }
   getoverSeas = async()=>{
