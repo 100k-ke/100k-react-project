@@ -43,11 +43,12 @@ class Header extends Component {
     }
   }
   // 退出登录
-  logout(){
-    this.props.logout()
-    this.setState({
-      isClose:true
-    })
+  // logout(){
+  //   this.props.logout()
+  //   this.setState({
+  //     isClose:true
+  //   })
+  // }
   //展示提示框
   showModal = () => {
     this.setState({
@@ -68,7 +69,7 @@ class Header extends Component {
       visible: false,
     })
   }
-}
+
   render (){
     const {isClose,isReg} = this.state
     const username = this.props.username
@@ -96,7 +97,7 @@ class Header extends Component {
             <li>贝壳研究院</li>
             <li>下载App</li>
           </ul>
-          <div className="headerContanierRight" style={{display:this.props.username === '/home' || '/profile' ? 'block':'none'}}>
+          <div className="headerContanierRight" style={{display:this.props.username ? 'block':'none'}}>
             <div className="login">
               <i></i>
               <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>

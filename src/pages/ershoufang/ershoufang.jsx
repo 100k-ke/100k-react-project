@@ -3,9 +3,7 @@ import Nav from '../../components/C-ershoufang/nav/nav'
 import HotHouse from '../../components/C-ershoufang/HotHouse/HotHouse'
 import Header from "../../components/header/header";
 import {connect} from 'react-redux'
-// import Header from '../../components/C-ershoufang/header/header'
-import Nav from '../../components/C-ershoufang/nav/nav'
-import HotHouse from '../../components/C-ershoufang/HotHouse/HotHouse'
+
 import {reqResold} from '../../api'
 import {saveConditionAction} from '../../redux/actions/esf_action'
 import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
