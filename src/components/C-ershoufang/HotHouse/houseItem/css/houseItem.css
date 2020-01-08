@@ -9,9 +9,10 @@
 .houseItem .houseImg{
   width: 236px;
   height: 100%;
-  background-image:url('../../image/house5.jpg') ;
-  background-size: cover;
   margin-right: 39px;
+  background-size: cover;
+  background-repeat: no-repeat
+
 }
 .houseItem .houseDetail{
   width: 657px;

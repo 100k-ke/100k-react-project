@@ -1,21 +1,46 @@
 import React,{Component} from 'react'
 // import { Checkbox } from 'antd';
 import HouseItem from './houseItem/houseItem'
+import {reqResold} from '../../../api'
 import './css/hothouse.css'
 
 export default class MyComponent extends Component{
+  state={
+      list:[],
+      titleArr:['默认排序','最新发布','总价','房屋单价','面积'],
+      isShow:0
+    }
+  
+  async componentDidMount(){
+    let list = await reqResold()
+    console.log(list);
+    if (list.status===1) {
+      this.setState({list:list.datas.data}) 
+    }
+    console.log(this.state.list);
+    
+  }
+
+  // 点击切换
+  show(index){
+    this.setState({
+      isShow:index
+    })
+  }
   render(){
-    const filters = ['在售','住宅','VR看房','优惠楼盘','近期开盘']
+    let {list,titleArr,isShow} = this.state
+    console.log(isShow)
     return (
       <div className="houseList">
         {/* 左侧楼盘列表 */}
         <div className="recommendHouse">
           <ul className="sort">
-            <li className="sortSelect">默认排序</li>
-            <li>最新发布</li>
-            <li>总价</li>
-            <li>房屋单价</li>
-            <li>面积</li>
+            {
+              titleArr.map((title,index)=>
+               <li className={isShow===index?'sortSelect':null} key={index} onClick={()=>{this.show(index)}}>{title}</li>
+              )
+            }
+            
           </ul>
           <div className="houseResult">
             <span className="found">
@@ -25,9 +50,12 @@ export default class MyComponent extends Component{
           </div>
           {/* 左侧各个楼盘详情 */}
           <div className="houseContainer">
-            <ul>
-              <HouseItem/>
-            </ul>
+            {
+              list.map((item,index)=> <HouseItem key={index} item={item}/>)
+            }
+              
+
+            
           </div>
         </div>
         {/* 右侧热门楼盘列表 */}
