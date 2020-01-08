@@ -9,7 +9,8 @@ import datas from '../../datas/roomDetail.json'
 import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
-  state => ({}),
+  // state => ({username : state.userInfo.username}),
+  state => ({isLogin:state.userInfo.isLogin}),
   {
     deleteUserInfo:deleteUserInfoAction
   }
@@ -22,7 +23,7 @@ class Profile extends Component{
     pathname:'',   //获取当前的路径
     cancel:false,    //取消关注
     visible: false,   //是否展示提示框
-    roomDetail:datas.data.list
+    roomDetail:datas.data.list   //关注房子的对象
   }
   //展示提示框
   showModal = () => {
@@ -80,13 +81,13 @@ class Profile extends Component{
   //取消关注
   cancel = (id)=>{
     const {roomDetail} = this.state
-    let newRoom = roomDetail.filter((room)=>{
+    let newRoom = roomDetail.filter((room)=>{  //过滤出未取消关注的房源
       return room.houseId !== id 
     })
     this.setState({
       cancel:true,
-      roomDetail:newRoom,
-      roomCount:newRoom.length
+      roomDetail:newRoom,   //更新房源的信息
+      roomCount:newRoom.length   //更新关注房子的数量
     })
   }
   // 挂载
@@ -107,12 +108,12 @@ class Profile extends Component{
   render(){
     // 模拟数据
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
-    const {roomCount,active1,active2,cancel,roomDetail}  = this.state
-    let {pathname} = this.props.location
-    //获取用户名的手机号
-    let username = '17843089085'
+    const {roomCount,active1,active2,roomDetail}  = this.state
+    let {pathname} = this.props.location  //获取当前路径
+    let username = JSON.parse(localStorage.getItem('user'))  //获取本地用户名
     let reg=/(\d{2})\d{7}(\d{2})/;
-    let newUsername = username.replace(reg, "$1****$2")
+    username = username.replace(reg, "$1****$2")
+
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -148,7 +149,7 @@ class Profile extends Component{
               </li>
             </ul>
             <div className="logout" >
-              <span>17**...</span>
+              <span>{username}</span>
               <span className="logout-a" onClick={this.showModal}>退出</span>
               <Modal
                 title="提示"
@@ -172,7 +173,7 @@ class Profile extends Component{
             <div className="user-avatar"></div>
             {/* 用户名 */}
             <div className="user-name">
-              <span>欢迎你,{newUsername}</span>
+              <span>欢迎你,{username}</span>
             </div>
             <ul className="user-detail">
               <Link to="/profile/0">
@@ -202,9 +203,8 @@ class Profile extends Component{
             {/* 未关注房子的状态 */}
             <RoomContent roomCount={roomCount}/>
             {/* 关注房子的状态信息 */}
-            <ul className={roomCount === 0 ? 'roomList display' : 'roomList'} ref="roomlist">
+            <ul className={roomCount === 0 && !roomDetail ? 'roomList display' : 'roomList'} ref="roomlist">
               {
-                
                 roomDetail.map((room)=>{
                   return (
                     <li key={room.houseId}>
@@ -230,7 +230,7 @@ class Profile extends Component{
                               <span className="xie">/</span>
                               <span>{room.floorStat}(共{room.totalFloor}层)</span>
                               <span className="xie">/</span>
-                              <span>{room.buildYear,room.hbtName}</span>
+                              <span>{room.buildYear} {room.hbtName}</span>
                             </div>
                           </div>
                           <div className="roomPrice">
