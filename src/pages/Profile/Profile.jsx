@@ -9,7 +9,7 @@ import datas from '../../datas/roomDetail.json'
 import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
-  state => ({isLogin:state.userInfo.isLogin}),
+  state => ({}),
   {
     deleteUserInfo:deleteUserInfoAction
   }
