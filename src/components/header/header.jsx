@@ -68,7 +68,7 @@ class Header extends Component {
             <li>贝壳研究院</li>
             <li>下载App</li>
           </ul>
-          <div className="headerContanierRight" style={{display:this.props.username?'block':'none'}}>
+          <div className="headerContanierRight" style={{display:this.props.username === '/home' || '/profile' ? 'block':'none'}}>
             <div className="login">
               <i></i>
               <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
