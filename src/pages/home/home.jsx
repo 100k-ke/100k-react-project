@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
 import { Menu ,Dropdown,message} from 'antd';
 import {reqnewHouse,reqoverSeas,reqsecondHand,reqxiaoQu} from '../../api/index'
+import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
+import {connect} from 'react-redux'
 import './css/home.less'
 
 
@@ -20,7 +22,7 @@ const menuAPP = (
   </Menu>
 );
 
-export default class Home extends Component{
+ class Home extends Component{
 
   state = {
     isShow:true, //广告的显示与隐藏
@@ -761,3 +763,10 @@ export default class Home extends Component{
     )
   }
 }
+
+export default connect(
+  state => ({}),
+  {
+    saveNewHouse:createSaveNewHouse,
+  }
+)(Home)

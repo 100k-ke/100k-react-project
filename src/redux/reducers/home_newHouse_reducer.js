@@ -1,7 +1,7 @@
 
-import {SAVEHOUSE} from '../action_types'
+import {SAVENEWHOUSE} from '../action_types'
+
 let initState = { // 初始化状态
-  attensionList:{},
   newHouses:[]
 }
 export default function reducer(preState=initState,action) {
@@ -9,7 +9,7 @@ export default function reducer(preState=initState,action) {
   console.log(type,data)
   let newState
   switch (type) {
-    case SAVEHOUSE:
+    case SAVENEWHOUSE:
       newState = {data:data}
       return newState
     default:

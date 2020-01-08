@@ -3,3 +3,5 @@ export const DELETEUSER = 'deleteuser'
 
 // 保存详情页房屋信息
 export const SAVEHOUSE = 'savehouse'
+// 首页--新房
+export const SAVENEWHOUSE = 'savenewouse'
