@@ -10,3 +10,5 @@
 
 
 # 要用@connect装饰器语法，需要下载什么，和配置
+  下载：@babel/plugin-proposal-decorators
+  配置：在config-overrides.js中直接调用addDecoratorsLegacy()
