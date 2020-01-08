@@ -1,0 +1,53 @@
+.topHeader{
+  height: 38px;
+  background-color: #101d37;
+  font-size: 12px;
+  .headerContanier {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 38px;
+    width: 1150px;
+    margin: 0 auto;
+    color: #333;
+    .headerContanierLeft{
+      margin-bottom: 0;
+      li {
+        display: inline-block;
+        margin-right:21.5px;
+        color:#eee;
+        cursor: pointer;
+      }
+      li:hover {
+        color: #fff;
+      }
+    }
+    .headerContanierRight {
+      display:flex;
+      align-items: center;
+      color: #eee;
+      margin-top: 0;
+      cursor: pointer;
+      i {
+        display: inline-block;
+        background-image: url('./imgs/sprite.png');
+        width: 12px;
+        height: 12px;
+      }
+      span {
+        margin-left: 10px;
+      }
+      .login {
+        margin-right: 20px;
+        i {
+          background-position: -411px -221px;
+        }
+      }
+      .hotPhone {
+        i {
+          background-position: -447px -221px;
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,6 @@ import datas from '../../datas/roomDetail.json'
 import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
-  // state => ({username : state.userInfo.username}),
   state => ({isLogin:state.userInfo.isLogin}),
   {
     deleteUserInfo:deleteUserInfoAction
@@ -17,11 +16,11 @@ import {deleteUserInfoAction} from '../../redux/actions/login_action'
 )
 class Profile extends Component{
   state = {
-    active1:[true,false,false],     //用高亮样式,默认不用
-    active2:[true,false,false,false],
-    roomCount:0,    //关注房子的数量
-    pathname:'',   //获取当前的路径
-    cancel:false,    //取消关注
+    active1:[true,false,false],         //高亮数组
+    active2:[true,false,false,false],   //高亮数组
+    roomCount:0,      //关注房子的数量
+    pathname:'',      //获取当前的路径
+    cancel:false,     //是否取消关注
     visible: false,   //是否展示提示框
     roomDetail:datas.data.list   //关注房子的对象
   }
@@ -92,6 +91,7 @@ class Profile extends Component{
   }
   // 挂载
   componentDidMount(){
+    let {roomDetail} = this.state
     // 获取ul
     let ul = this.refs.roomlist
     // 获取li的列表
@@ -100,20 +100,20 @@ class Profile extends Component{
     this.setState({
       roomCount:lis.length,
     }) 
-
     //更新菜单样式
     let index = this.props.match.params.index
     this.changeActive2(index * 1)
   }
   render(){
-    // 模拟数据
+    // 模拟头部数据
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
     const {roomCount,active1,active2,roomDetail}  = this.state
-    let {pathname} = this.props.location  //获取当前路径
-    let username = JSON.parse(localStorage.getItem('user'))  //获取本地用户名
-    let reg=/(\d{2})\d{7}(\d{2})/;
+    let {pathname} = this.props.location                     //获取当前路径
+    let username = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user')) //获取本地用户名
+    //正则*号代替手机号
+    let reg=/(\d{2})\d{7}(\d{2})/;                          
     username = username.replace(reg, "$1****$2")
-
+    
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -141,13 +141,13 @@ class Profile extends Component{
               <li className="downApp">
                 <span>下载app</span>
                 {/* 下载APP */}
-                {/* <div className="download" style={{display:'none'}}> */}
                 <div className="download">
                   <i></i>
                   <div className="downImg"></div>
                 </div>
               </li>
             </ul>
+            {/* 退出登录 */}
             <div className="logout" >
               <span>{username}</span>
               <span className="logout-a" onClick={this.showModal}>退出</span>
@@ -162,9 +162,9 @@ class Profile extends Component{
                 <p>您是否确定退出登录?</p>
               </Modal>
             </div>
-            
           </div>
         </div>
+
         {/* 主体 */}
         <div className="detailContainer w">
           {/* 左侧 */}
@@ -253,6 +253,7 @@ class Profile extends Component{
               </ul>
           </div>
         </div>
+
         {/* 底部 */}
         <div className="footerContainer w">
           天津小屋信息科技有限公司 | 地址：天津经济技术开发区南港工业区综合服务区办公楼C座一层112室09单元 | 电话：10106188 <br/><br/>
