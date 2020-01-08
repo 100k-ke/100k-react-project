@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import './css/mainnav.css'
 import { Checkbox } from 'antd'
 
+
 export default class MyComponent extends Component{
   state={
     isShow:true,
@@ -26,9 +27,9 @@ export default class MyComponent extends Component{
   }
   onChange(index,value) {
     console.log('checked = ', index,value);
+    console.log(this.refs)
     if (index===0) {
-      this.refs['value'+(index+1)].className = 'disable'
-      console.log(this.refs['value'+(index+1)])
+      // console.log(this.refs['value'+(index+1)])
     }
   }
   heightVariety(index){

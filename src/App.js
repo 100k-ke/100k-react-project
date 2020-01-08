@@ -11,21 +11,7 @@ import {saveUserInfoAction} from './redux/actions/login_action'
 
 
 export default class App extends Component{
-  componentDidMount(){
-    // saveUserInfoAction({data:{},check:'ture'})
-    // let username = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'))
-    // this.autoLogin(username)
-  }
-  // autoLogin = async (username)=>{
-  //   let result = await reqAutoLogin(username)
-  //   console.log(result);
-  //   const {code,data} = result
-  //   if (code === 1) {
-  //     saveUserInfoAction({data,check:1})
-  //   }else{
-  //     return
-  //   }
-  // }
+  
   render(){
     return (
       <div className="app">

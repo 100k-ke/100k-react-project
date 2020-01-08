@@ -375,9 +375,8 @@ const menuAPP = (
                           })
                         }
                     </ul>
-                  {/* 小三角:取到【点击的下标】时对应的【数组】里的【当前值】 */}
+                  {/* 小三角:取到【点击的下标indexSearch】时对应的【数组】里的【当前值】 */}
                     <i style={{position:'absolute',left:leftLists[indexSearch]}}></i>
-
                   </div>
                   <div className='search clear'>
                     <div className='box'>
@@ -532,7 +531,7 @@ const menuAPP = (
                  {
                    newHouses.map((newHouse,index)=>{
                      return(
-                      <li className='clickHouse' key={index}>
+                      <li className='clickHouse' key={index}  onClick={()=>{this.props.history.push(`/detail/${newHouse.id}`)}}>
                         <a className='wrap' title={newHouse.build_name}>
                           <img className='b' src={newHouse.cover_size_pic} alt=""/>
                           <div className='bg'></div>
