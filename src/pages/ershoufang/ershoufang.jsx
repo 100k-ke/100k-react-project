@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
 import Nav from '../../components/C-ershoufang/nav/nav'
 import HotHouse from '../../components/C-ershoufang/HotHouse/HotHouse'
-import Header from "../../components/header/header";
+// import Header from "../../components/header/header";
 import {connect} from 'react-redux'
+import Headers from '../../components/C-ershoufang/header/header'
 import {reqResold} from '../../api'
 import {saveConditionAction} from '../../redux/actions/esf_action'
 import {createSaveNewHouse} from '../../redux/actions/home_newHouse_action'
@@ -30,6 +31,7 @@ class ershoufang extends Component{
     return(
       <div className="ershoufangComponent">
         <Header/>
+        <Headers/>
         <Nav/>
         <HotHouse/>
         <div style={{width:'1150px',margin: '0 auto'}}>
