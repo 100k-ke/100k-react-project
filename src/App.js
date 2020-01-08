@@ -13,16 +13,15 @@ export default class App extends Component{
   render(){
     return (
       <div className="app">
-        <Header></Header>
+        {/* <Header></Header> */}
         <Switch>
           <Route path="/profile" component={Profile}/>
           <Route path="/home" component={Home}/>
           <Route path="/login" component={Login}/>
-          <Route path="/detail" component={Detail}/>
+          <Route path="/detail/:id" component={Detail}/>
           <Route path="/ershoufang" component={Ershoufang}/>
-          <Redirect to="/ershoufang"/>
+          <Redirect to="/home" />
           <Route path="/profile/:index" component={Profile}/>
-          <Route path="/login" component={Login}/>
           <Route path="/newhouse" component={NewHouse}/>
         </Switch>
       </div>

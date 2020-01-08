@@ -3,13 +3,13 @@ import {withRouter} from 'react-router-dom'
 
 import './header.less'
 
-// @withRouter
+@withRouter
 class Header extends Component {
   render (){
     return(
-      <div className="header">
+      <div className="topHeader">
         <div className="headerContanier">
-          <ul className="headerLeft">
+          <ul className="headerContanierLeft">
             <li>首页</li>
             <li>二手房</li>
             <li>新房</li>
@@ -24,7 +24,7 @@ class Header extends Component {
             <li>贝壳研究院</li>
             <li>下载App</li>
           </ul>
-          <div className="headerRight">
+          <div className="headerContanierRight">
             <div className="login">
               <i></i>
               <span>181****8263</span>
