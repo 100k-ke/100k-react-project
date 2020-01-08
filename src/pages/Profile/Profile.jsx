@@ -9,7 +9,7 @@ import datas from '../../datas/roomDetail.json'
 import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
-  state => ({isLogin:state.userInfo.isLogin}),
+  state => ({}),
   {
     deleteUserInfo:deleteUserInfoAction
   }
@@ -109,7 +109,7 @@ class Profile extends Component{
     const headerArrs = ['租房','海外','装修','商业办公','小区','百科','贝壳指数','发布房源','贝壳研究院']
     const {roomCount,active1,active2,roomDetail}  = this.state
     let {pathname} = this.props.location                     //获取当前路径
-    let username = JSON.parse(localStorage.getItem('user'))  //获取本地用户名
+    let username = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user')) //获取本地用户名
     //正则*号代替手机号
     let reg=/(\d{2})\d{7}(\d{2})/;                          
     username = username.replace(reg, "$1****$2")

@@ -3,7 +3,10 @@ import qs from 'querystring'
 import {message} from 'antd'
 import store from '../redux/store'
 
-const instance = axios.create()
+// 创建instance，相比axios而言，少了一些方法：create、all...
+const instance = axios.create({
+  timeout:20000
+})
 
 instance.interceptors.request.use(
   (config)=>{
@@ -24,12 +27,6 @@ instance.interceptors.response.use(
     return response.data
   },
   (error)=>{
-    if (error.response.status === 401) {
-      message.error('用户数据校验失败，请重新登录！')
-      // store.dispatch(deleteUserInfoAction())
-    }else{ 
-      message.error(error.message,1)
-    }
     return new Promise(()=>{});
   }
 )
