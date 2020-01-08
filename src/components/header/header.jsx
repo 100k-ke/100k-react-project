@@ -2,9 +2,9 @@ import React,{Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { deleteUserInfoAction } from "../../redux/actions/login_action";
+import {Modal} from 'antd'
 import './header.less'
 import Login from '../../pages/Login/Login'
-import {deleteUserInfoAction} from '../../redux/actions/login_action'
 
 @connect(
   state => ({
@@ -19,7 +19,8 @@ class Header extends Component {
   state = {
     // 动态显示登录、注册
     isClose:true,
-    isReg:false 
+    isReg:false,
+    visible: false   //是否展示提示框
   }
   // 动态显示登录、注册的方法
   showLogin = (event)=>{
@@ -47,12 +48,30 @@ class Header extends Component {
     this.setState({
       isClose:true
     })
+  //展示提示框
+  showModal = () => {
+    this.setState({
+      visible: true,
+    })
   }
-  componentDidMount(){
-    console.log(this);
+  //点击确定
+  handleOk = () => {
+    this.setState({
+      visible: false,
+    })
+    //删除用户名和token
+    this.props.deleteUserInfo()
   }
+  //点击取消
+  handleCancel = () => {
+    this.setState({
+      visible: false,
+    })
+  }
+}
   render (){
     const {isClose,isReg} = this.state
+    const username = this.props.username
     return(
       <div className="topHeader" style={{display : this.props.location.pathname === '/home' ? 'none' :'block'}}>
         {
@@ -80,8 +99,18 @@ class Header extends Component {
           <div className="headerContanierRight" style={{display:this.props.username === '/home' || '/profile' ? 'block':'none'}}>
             <div className="login">
               <i></i>
-              <span onClick={()=>{this.props.history.push('/profile/0')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
-              <span onClick={()=>{this.logout()}}>退出</span>
+              <span onClick={()=>{this.props.history.push('/profile')}}>{this.props.username.replace(/^(\d{3})\d*(\d{4})$/,'$1****$2')}</span>
+              <span onClick={this.showModal} >{username ? '退出' : ''}</span>
+              <Modal
+                title="提示"
+                visible={this.state.visible}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                okText='确定'
+                cancelText='取消'
+              >
+                <p>您是否确定退出登录?</p>
+              </Modal>
             </div>
             <div className="hotPhone">
               <i></i>
