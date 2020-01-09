@@ -81,9 +81,16 @@ class Profile extends Component{
   //取消关注
   cancel = (id)=>{
     const {roomDetail} = this.state
+    let arr = []
     let newRoom = roomDetail.filter((room)=>{  //过滤出未取消关注的房源
-      return room.houseId !== id 
+      if(room.id !== id){
+        return room.id !== id
+      }else{
+        arr.push(room.id)
+      }
+      
     })
+    localStorage.setItem('roomId',JSON.stringify(arr))
     this.setState({
       cancel:true,
       roomDetail:newRoom,   //更新房源的信息
@@ -93,7 +100,9 @@ class Profile extends Component{
 
   getRoomDetail = async () => {
     let data = JSON.parse(localStorage.getItem('roomId'))
+    console.log(data);
     const result = await reqRoomDetail(data)
+    console.log(result);
     let {datas,status} = result
     if (status === 1) {
       this.setState({roomDetail:datas})
@@ -113,6 +122,7 @@ class Profile extends Component{
     // 更新房子的数量的状态
     this.setState({
       roomCount:lis.length,
+
     }) 
     //更新菜单样式
     let index = this.props.match.params.index
@@ -131,6 +141,11 @@ class Profile extends Component{
     let reg=/(\d{2})\d{7}(\d{2})/;                          
     username = username.replace(reg, "$1****$2")
     
+    // this.setState({
+    //   roomCount:roomDetail.length
+    // })
+
+
     return (
       <div className="profileContainer">
         {/* 头部 */}
@@ -210,7 +225,7 @@ class Profile extends Component{
           {/* 右侧 */}
           <div className="main-right">
             {/* 标题 */}
-            <RoomHeader key={pathname} roomCount={roomCount} pathname={pathname}/>
+            <RoomHeader key={pathname} roomCount={roomDetail.length} pathname={pathname}/>
             {/* 房子类型 */}
             <div className={pathname === '/profile/0' ? 'room-list' : 'room-list display'}>
               <span className={active1[0] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(0)}>二手房</span>
@@ -218,13 +233,15 @@ class Profile extends Component{
               <span className={active1[2] ? 'room-span active' : 'room-span'}  onClick={()=>this.changeActive1(2)}>租房</span>
             </div>
             {/* 未关注房子的状态 */}
-            <RoomContent roomCount={roomCount}/>
+            <RoomContent roomCount={roomDetail.length}/>
             {/* 关注房子的状态信息 */}
-            <ul className={roomCount === 0 && !roomDetail ? 'roomList display' : 'roomList'} ref="roomlist">
+            {/* <ul className={!roomDetail.length ? 'roomList display' : 'roomList'} ref="roomlist"> */}
+            <ul className={!roomDetail.length ? 'roomList display' : 'roomList'} ref="roomlist">
+              
               {
                 roomDetail.map((room)=>{
                   return (
-                    <li key={room.houseId}>
+                    <li key={room.id}>
                       <div className="roomDetail">
                         <div className="roomImg">
                           <img src={room.imgSrc} alt=""/>
@@ -260,7 +277,7 @@ class Profile extends Component{
                         </div>
                       </div>
                       {/* 取消关注 */}
-                      <div className="delete-room" onClick={()=>this.cancel(room.houseId)}>
+                      <div className="delete-room" onClick={()=>this.cancel(room.id)}>
                         取消关注
                       </div>
                     </li>
